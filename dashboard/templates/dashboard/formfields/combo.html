@@ -1,0 +1,15 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/formfields/combo.html</span>
+
+<div class="field">
+    <label for="{{ field.id_for_label }}"  
+           data-tooltip="{{ field.help_text|safe }}"
+           data-position="bottom left">{{ field.label }}</label>
+    {{ field }}
+    <div class="ui error message">
+        <div class="header">Error</div>
+        <p>{{ field.errors }}</p>
+    </div>
+ </div>
+</div>

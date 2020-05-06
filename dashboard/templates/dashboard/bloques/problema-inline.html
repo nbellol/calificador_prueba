@@ -1,0 +1,41 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/bloques/problema-inline.html</span>
+
+<div class="item">
+    <div class="content">
+        <div class="header">
+            {% include 'dashboard/componentes/estado_problema.html' with resultado=resultado %}
+            <a href="{% url 'problema' problema.slug %}">{{ problema.titulo }}</a>
+        </div>
+
+        <div class="ui tiny right floated statistics">
+          {% if resultado %}
+                <div class=" statistic">
+                      <div class="label">
+                        Puntos
+                      </div>
+                      <div class="value">
+                        {{ resultado.puntos }}
+                      </div>
+                  </div>
+          {% endif %}
+          <div class=" statistic">
+              <div class="label">
+                Dificultad
+              </div>
+              <div class="value">
+                {{ problema.dificultad }}
+              </div>
+          </div>
+        </div>
+
+         <div class="meta">
+            {% include 'dashboard/componentes/tags.html' with tags=problema.tags.all %}
+        </div>
+        <div class="description">
+            <p>{{ problema.descripcion|linebreaks|truncatewords:50 }}</p>
+        </div>
+    </div>
+  </div>
+</div>

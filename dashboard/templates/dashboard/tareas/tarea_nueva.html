@@ -1,0 +1,125 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/tareas/tarea_nueva.html</span>
+
+
+{% extends "base.html" %}
+
+{% block head_title %}
+{{ tarea.numero }} - ({{ tarea.fecha_formateada }})
+{% endblock %}
+
+{% block content %}
+
+{% if mensaje %}
+<div class="ui message red">
+  <div class="header">
+    Error creando la tarea
+  </div>
+  {{ mensaje }}
+</div>
+{% endif %}
+
+
+<div class="ui items">
+    <form class="ui form"  method='POST' action='{% url 'tarea_nueva_crear' %}' > {% csrf_token %}
+        <h3 class="ui dividing header">Nueva tarea</h4>
+        <div class="three fields">
+          <div class="field">        
+           <label for="fruit">{{ forma.titulo.label }}</label>
+             <div class="field">
+                {{ forma.titulo }}
+             </div>
+          </div>
+
+          <div class="field">
+             <label for="numero_seccion">{{ forma.numero_seccion.label }}</label>
+                  <div class="ui selection dropdown">
+                      <input type="hidden" name="numero_seccion">
+                      <i class="dropdown icon"></i>
+                      <div class="default text">Sección</div>
+                      <div class="menu">                         
+                          {% for id, desc in forma.numero_seccion.field.choices %}
+                           <div class="item" data-value="{{ id }}">{{ desc }}</div>
+                          {% endfor %}
+                      </div>
+                  </div>
+                               
+           </div>
+        
+
+        <div class="field">
+           <label for="fruit">{{ forma.fecha_limite.label }}</label>
+             <div class="field">
+                <div class="ui calendar" id="standard_calendar">
+                  <div class="ui input left icon">
+                    <i class="calendar icon"></i>
+                    {{ forma.fecha_limite }}
+                  </div>
+                </div>    
+             </div>
+         </div>
+        </div>         
+
+        <h4 class="ui dividing header">Problemas</h4>
+
+        <div class="inline fields">
+             <div class="sixteen wide field">
+                <div class="ui fluid multiple search normal selection dropdown">
+                  <input type="hidden" name="tags">
+                  <i class="dropdown icon"></i>
+                  <div class="default text">Problemas</div>
+                  <div class="menu">
+                      {% for problema in problemas %}
+                      <div class="item" data-value="{{ problema.id }}">{{ problema.titulo }}</div>
+                      {% endfor %}
+                  </div> 
+               </div>              
+             </div>
+        </div>
+
+        <div class="field ">
+          <div class="ui left icon input">
+            <button class="ui primary button">Crear tarea</button>
+          </div>
+        </div>
+        
+    </form>
+</div>
+
+<script language="javascript">
+$('#standard_calendar')
+  .calendar({
+    formatter: {
+      date: function (date, settings) {
+        if (!date) return '';
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+        return day + '/' + month + '/' + year;
+      },
+      time: function (time, settings) {
+        if (!time) return '';
+        var hours = time.getHours();
+        var minutes = time.getMinutes();
+        return hours.toString().padStart(2, "0") + ':' + minutes.toString().padStart(2, "0");
+      }      
+    },
+    text: {
+      days: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+      months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+      monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+      today: 'Hoy',
+      now: 'Ahora',
+      am: 'AM',
+      pm: 'PM'
+    }      
+  })
+;
+$('.selection.dropdown')
+  .dropdown()
+;
+</script>
+
+{% endblock %}
+</div>

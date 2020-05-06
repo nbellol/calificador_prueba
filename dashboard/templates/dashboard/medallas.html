@@ -1,0 +1,30 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/medallas.html</span>
+
+{% extends "base.html" %}
+
+{% block head_title %}
+Medallas
+{% endblock %}
+
+{% block content %}
+<div class="ui large header">
+    Medallas
+</div>
+
+<div class="ui items">
+    <div class="active content">
+        <div class="ui grid">
+            {% for medalla in medallas %}
+                <div class="three wide column">
+                {% include 'dashboard/componentes/medalla.html' with medalla=medalla %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>    
+</div> <!-- Fin items -->
+
+{% endblock %}
+
+</div>

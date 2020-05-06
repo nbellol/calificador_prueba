@@ -1,0 +1,25 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/bloques/problema-preguntas.html</span>
+
+<div class="title">
+    <h3>Preguntas y comentarios sobre el problema<i class="dropdown icon"></i></h3>            
+</div>
+<div class="active content">
+    <div class="fluid accordion">
+        <div class="title">
+            <button class="ui primary labeled submit icon button tiny" type="submit">
+                <i class="icon question circle"></i>Nueva pregunta o comentario</button>
+        </div>    
+        <div class="content">
+            {% include 'dashboard/componentes/nuevo_comentario.html' with pregunta=pregunta formulario=form_pregunta tipo="pregunta" %}
+        </div>
+    </div>
+    <div class="ui comments bordeado">
+    {% for pregunta in problema.consultar_preguntas %}
+        {% include 'dashboard/bloques/pregunta-inline.html' with pregunta=pregunta %}
+    {% endfor %}
+    </div>
+</div>
+    
+</div>

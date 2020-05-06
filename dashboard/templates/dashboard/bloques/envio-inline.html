@@ -1,0 +1,27 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/bloques/envio-inline.html</span>
+
+{% load humanize %}
+
+<div class="item">
+  <div class="ui content grid">
+       <div class="ui one column">
+           {% include 'dashboard/componentes/estado_envio.html' with resultado=envio.estado %}
+       </div>
+       {% if mostrar_problema %}
+       <div class="ui four wide column"><a href="{% url 'problema' envio.problema.slug %}">{{ envio.problema.titulo }}</a></div>    
+       {% endif %}
+       
+       <div class="ui three wide column"><a href="{% url 'envio' envio.slug %}">Intento #{{ envio.numero }}</a>
+            {% include 'dashboard/componentes/avance_envio.html' with envio=envio %}
+       </div>            
+       <div class="ui four wide column">{{ envio.timestamp|naturaltime }}</div>    
+       <div class="ui four wide column">
+            {% include 'dashboard/componentes/nuevo_envio_boton.html' with problema=envio.problema %}                        
+       </div>
+   </div>     
+</div>
+   
+  
+</div>

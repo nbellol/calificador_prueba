@@ -1,0 +1,52 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/work/problema_completo.html</span>
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Problema {{ problema.numero }}</h1>
+
+{{ request.session.tipo_usuario }}
+
+<div>Titulo</div>
+<div>{{ problema.titulo }}</div>
+<div>Autor</div>
+<div>{{ problema.autor }}</div>
+<div>Curso</div>
+<div>{{ problema.curso }}</div>
+<div>Dificultad</div>
+<div>{{ problema.dificultad }}</div>
+<div>Estado</div>
+<div>{{ problema.estado }}</div>
+<div>Funcion</div>
+<div>{{ problema.funcion }}</div>
+<div>Retorno</div>
+<div>{{ problema.retorno }}</div>
+<div>Tiempo límite</div>
+<div>{{ problema.tiempo }}</div>
+<div>Descripcion</div>
+<div>{{ problema.descripcion }}</div>
+
+<div>
+    <form method='POST' action='.' enctype='multipart/form-data'> {% csrf_token %}
+        <!--
+         <input type="text" name="full_name" />
+         <input type="text" name="email" />
+         <textarea name="content"> </textarea>
+         -->
+         
+         {{ form.as_p }}
+         <button type="submit">Send</button>
+    
+    </form>
+
+</div>
+
+{% for pregunta in problema.consultar_preguntas %}
+    {% include 'dashboard/pregunta-inline.html' with pregunta=pregunta%}
+{% endfor %}
+
+{% endblock %}
+</div>

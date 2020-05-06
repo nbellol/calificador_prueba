@@ -1,0 +1,97 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/templates/navbarprof.html</span>
+
+  <div class="ui fixed inverted blue menu">
+    <div class="ui container">
+      <a href="/home" class="header item"  style="border-left: 0px;">
+        <img class="logo" width="90px" src="/image/logo.png">
+        <i class="icon home"></i>
+      </a>
+
+      <div class="ui simple dropdown item">
+        <i class="cogs icon"></i>Problemas
+        <div class="menu">
+          <a class="item" href="{% url 'buscar_problemas' %}">B&uacute;squeda simple de problemas</a>
+          <a class="item" href="{% url 'buscar_problemas_avanzado' %}">B&uacute;squeda avanzada de problemas</a>
+          <a class="item" href="{% url 'problemas' %}">Todos los problemas</a>
+          <!--<a class="item" href="{% url 'problemas_autor' id_usuario %}">Mis problemas</a>-->
+        </div>
+      </div>
+
+      <div class="ui simple dropdown item">
+        <i class="hand paper outline icon"></i>Mis Secciones
+        <div class="menu">
+          {% for seccion in secciones_menu_actuales %}
+              <a class="item" href="{% url 'analizar_seccion' seccion.id %}">{{ seccion.nombre_semestre}} - Sección {{ seccion.numero }}</a>
+          {% endfor %}
+          <div class="divider"></div>
+          
+          {% for seccion in secciones_menu_antiguas %}
+              <a class="item" href="{% url 'analizar_seccion' seccion.id %}">{{ seccion.nombre_semestre}} - Sección {{ seccion.numero }}</a>
+          {% endfor %}
+
+        </div>
+      </div>
+
+      <div class="ui simple dropdown item">
+        <i class="calendar check outline icon"></i>Tareas
+        <div class="menu">
+          <a class="item" href="{% url 'mis_tareas' %}">Tareas del semestre</a>
+          <!--
+          <a class="item" href="{% url 'tarea_nueva' %}">Nueva tarea</a>
+          <div class="divider"></div>
+          <a class="item" href="{% url 'mis_tareas' %}">Todas mis tareas</a>-->
+        </div>
+      </div>
+
+      <div class="ui simple dropdown item">
+        <i class="calendar check outline icon"></i>Retos
+        <div class="menu">
+          <a class="item" href="{% url 'retos' 1 %}">Retos nivel 1</a>
+          <a class="item" href="{% url 'retos' 2 %}">Retos nivel 2</a>
+          <a class="item" href="{% url 'retos' 3 %}">Retos nivel 3</a>
+          <a class="item" href="{% url 'retos' 4 %}">Retos nivel 4</a>
+        </div>
+      </div>
+      
+      <div class="ui simple dropdown item">
+        <i class="question circle outline icon"></i>Ayuda
+        <div class="menu">
+          <a class="item" href="{% url 'tutorial' %}">Tutorial para estudiantes</a>
+          <a class="item" href="{% url 'faq' %}">Preguntas frecuentes</a>
+        </div>
+      </div>      
+
+<!--
+      <div class="ui simple dropdown item"  style="border-right: 0px;">
+        <i class="question icon"></i>Preguntas
+        <div class="menu">
+          <a class="item" href="{% url 'estadisticas' %}">Preguntas de mis estudiantes</a>
+          <a class="item" href="{% url 'estadisticas' %}"></i>Preguntas pendientes</a>
+        </div>
+      </div>
+-->
+
+     <div class="ui right item grid" style="border-right: 0px;">
+       {% include 'menu_notificaciones.html' %}
+       <div class="ui item simple dropdown right" style="border-right: 0px;">
+        <div class="ui grid" style="border: 0px;">
+            <div class=""  style="padding-left: 0.5em; padding-right: 0em;">
+                <div class="ui right aligned">{{ puntos }} pts</div>
+                <div class="ui right aligned">{{ num_medallas }} M</div>
+            </div>
+            <div class="ui right aligned  image">
+                <img class="logo" style="width:30px;height:30px;" src="/image/{{ imagen_avatar }}" />
+            </div>
+        </div>
+        <div class="menu">
+          <a class="item" href="{% url 'perfil' %}"><i class="id badge outline icon"></i>Mi perfil</a>
+          <a class="item" href="{% url 'logout' %}"><i class="sign-out icon"></i>Logout</a>
+        </div>
+      </div>
+     </div>
+
+    </div>
+  </div>
+</div>

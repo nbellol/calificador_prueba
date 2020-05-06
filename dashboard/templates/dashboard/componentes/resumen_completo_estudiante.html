@@ -1,0 +1,25 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/componentes/resumen_completo_estudiante.html</span>
+
+<div class="row">
+    <td class="left aligned">
+         <a href="{% url 'analisis_estudiante' est.id %}">
+         {% include 'dashboard/componentes/boton-analizar.html' %} 
+         </a> 
+         <img class="logo" width="30" height="30" src="/image/{{ est.avatar }}" style="transform: translate(0,25%)"/>
+         {{ est.nombre }} </td>
+    <td>{{ est.puntos }}</td>
+    <!--<td>{{ est.medallas }}</td>-->
+    <td><!--<img src="/image/{{ est.pulso_actividad }}" width="60" />--></td>
+    <td><!--<img src="/image/{{ est.pulso_puntos }}"  width="60" />--></td>
+    <td>{{ est.num_problemas_resueltos }}/{{ est.num_intentos }}</td>
+    <td>{% include 'dashboard/componentes/avance-tarea.html' with avance=est.eficiencia numero=est.id %}</td>
+    {% for resultado in resultado_tareas %}
+    <td>
+    {% include 'dashboard/componentes/avance-tarea.html' with avance=resultado.avance numero=resultado.slug %}
+    </td>
+    {% endfor %}
+    <td>{% include 'dashboard/componentes/estudiante_sin_respuesta.html' with respuesta_pendiente=est.preguntas_sin_respuesta %}</td>
+</div>
+</div>

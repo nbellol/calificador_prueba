@@ -1,0 +1,45 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/bloques/envio-card.html</span>
+
+{% load humanize %}
+
+  <div class="card">
+    <div class="content">
+      <div class="header">
+          {% include 'dashboard/componentes/estado_envio.html' with resultado=envio.estado %}
+          {{ envio.problema.titulo }} (Intento #{{ envio.numero }})</div>
+
+      <div class="meta">
+         <span class="category">{{ envio.timestamp|naturaltime }}</span>
+      </div>
+      
+      <div class="description">
+        {% if envio.avance == 100%}
+        {{envio.resultado_estudiante.puntos}} pts / {{ envio.problema.dificultad }} pts
+        {% endif %}
+        {% include 'dashboard/componentes/avance_envio.html' with envio=envio %}
+      </div>
+    </div>
+    <div class="ui bottom attached center aligned">
+        <a  data-tooltip="Ver problema" data-position="top left" 
+            href="{% url 'problema' envio.problema.slug %}" target="_blank"
+            class="ui violet  basic label">
+            <i class="icon graduation cap"></i> Ver problema
+        </a>          
+    
+        <a  data-tooltip="Ver env&iacute;o" data-position="top left" 
+            href="{% url 'envio' envio.slug %}"
+            class="ui teal basic label">
+            <i class="teal briefcase icon"></i>Ver env&iacute;o
+        </a>              
+
+        <a  data-tooltip="Nuevo env&iacute;o" data-position="top left" 
+            href="{% url 'nuevo_envio' envio.problema.slug %}"
+            class="ui green basic label">
+            <i class="green briefcase icon"></i>Nuevo&nbsp;env&iacute;o
+        </a>        
+        
+    </div>
+  </div>
+</div>

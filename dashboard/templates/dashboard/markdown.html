@@ -1,0 +1,27 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/markdown.html</span>
+
+{% extends "base.html" %}
+
+{% block head_title %}
+Submissions
+{% endblock %}
+
+{% block content %}
+
+
+<div>
+<h2>martor</h2>
+
+{% load martortags %}
+
+# example
+{{ martor_form.description }}
+
+{{ content|safe_markdown }}
+
+<div/>
+
+{% endblock %}
+</div>

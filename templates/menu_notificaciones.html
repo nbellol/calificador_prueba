@@ -1,0 +1,36 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/templates/menu_notificaciones.html</span>
+
+ <div class="ui simple right dropdown item">
+     <i class="icon mail"></i>
+     {% if num_notificaciones > 0 %}
+        <div class="ui floating red circular mini label"
+          style="padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;top: 5px;right: 15px;">
+             {{ num_notificaciones }}
+        </div>
+     {% endif %}
+     <div class="menu">
+        <div class="header">
+          <a class="" href="{% url 'notificaciones' %}">Ver todas</a>
+        </div>
+
+        {% if num_notificaciones > 0 %}
+            <div class="divider"></div>
+        {% endif %}
+        {% for notificacion in notificaciones %}
+            <a class="item" href="{% url 'notificaciones' %}">
+                <i class="hand point right outline icon"></i>{{ notificacion.resumen|truncatewords:8 }}
+            </a>
+        {% endfor %}
+
+        {% if num_notificaciones > 0 %}
+            <div class="divider"></div>
+            <div class="header">
+              <a href="{% url 'marcar_leidas'  %}">Marcar todas como leídas</a>
+            </div>
+        {% endif %}
+
+     </div>
+ </div>
+</div>

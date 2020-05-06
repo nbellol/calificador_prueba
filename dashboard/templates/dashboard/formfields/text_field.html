@@ -1,0 +1,19 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/formfields/text_field.html</span>
+
+<div class="field">
+    <label for="{{ field.id_for_label }}"  
+           data-tooltip="{{ field.help_text|safe }}"
+           data-position="bottom left">{{ field.label }}</label>
+    <input type="text" 
+           name="{{ field.html_name }}" 
+           value="{% if field.value is not None %}{{ field.value }}{% endif %}" 
+           required="" 
+           id="{{ field.id_for_label }}" />
+    <div class="ui error message">
+        <div class="header">Error</div>
+        <p>{{ field.errors }}</p>
+    </div>
+ </div>
+</div>

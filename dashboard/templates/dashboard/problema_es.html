@@ -1,0 +1,77 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/problema_es.html</span>
+
+{% extends "base.html" %}
+
+{% block head_title %}
+{{ problema.titulo }}
+{% endblock %}
+
+{% block content %}
+
+
+<div style="margin-bottom: 12px;">
+{% include 'dashboard/componentes/leyenda_estado_problema.html' %}
+</div>
+
+<div class="ui items">
+
+
+<div class="item">
+    <div class="content">
+        {% include 'dashboard/bloques/problema-header.html' with resultado_problema=resultado_problema problema=problema%}
+    </div>
+</div>
+
+
+  <div class="ui grid celled">
+     <div class="row">
+        <div class="eight wide centered column">
+            <div class=" title">
+                <h4>Descripción del problema</h4>
+            </div>
+            {% include 'dashboard/bloques/problema-descripcion.html' with problema=problema%}
+        </div>
+        <div class="eight wide centered column">
+            <div class=" title">
+                <h4>Función requerida</h4>
+            </div>
+            <div>
+                Su solución debe tener una función de acuerdo a la siguiente especificación.
+                Usted puede tener funciones adicionales.
+            </div>
+            {% include 'dashboard/bloques/especificacion_funcion.html' with problema=problema%}
+        </div>
+    </div>
+  </div>
+
+  {% if permiso_envio %}
+  <div class="item">
+    <div class="ui fluid accordion">
+        <div class="active title">
+            <h3>Env&iacute;os<i class="dropdown icon"></i></h3>
+        </div>
+        <div class="ui active content">
+          <div class="item">
+            {% include 'dashboard/componentes/nuevo_envio_boton.html' with problema=problema %}
+          </div>
+          &nbsp;
+          <div class="ui item three stackable cards">
+            {% for envio in envios %}
+                {% include 'dashboard/bloques/envio-card-resumida.html' with envio=envio problema=problema mostrar_problema=mostrar_problema %}
+            {% endfor %}
+          </div>
+        </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="item">
+    <div class="ui fluid accordion">
+        {% include 'dashboard/bloques/problema-preguntas.html' with problema=problema%}
+    </div>
+  </div>
+</div>
+{% endblock %}
+</div>

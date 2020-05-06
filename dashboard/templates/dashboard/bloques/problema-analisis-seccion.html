@@ -1,0 +1,26 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/bloques/problema-analisis-seccion.html</span>
+
+
+<td class="left aligned">
+    <small>{% include 'dashboard/componentes/nivel_problema.html' with nivel=problema.nivel %}</small>
+    <a href="{% url 'problema' problema.slug %}">
+    {{ problema.titulo }} </a>
+    <span class="ui text small">
+    {% if problema.es_reto %}
+       <i class="icon grey dragon"></i>
+       {{ problema.nombre_nivel_reto }} - 
+   {% endif %}
+   Dif. {{ problema.dificultad }}</span>
+   
+   <a href="{% url 'analisis seccion problema' seccion.id problema.slug %}"> 
+        {% include 'dashboard/componentes/boton-analizar.html' %}</a>
+</td>
+<td class="center aligned">{{ resultado.num_estudiantes_exitosos }}/{{ resultado.num_estudiantes }}</td>  
+<td class="center aligned">
+    {{ resultado.exitosos }}/{{ resultado.totales }}
+</td>
+<td>{% include 'dashboard/componentes/avance-tarea.html' with avance=resultado.efectividad numero=problema.slug %}</td>
+
+</div>

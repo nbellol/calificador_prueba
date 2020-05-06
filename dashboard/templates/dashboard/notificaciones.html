@@ -1,0 +1,56 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/notificaciones.html</span>
+
+{% extends "base.html" %}
+
+{% block head_title %}
+Notificaciones
+{% endblock %}
+
+{% block content %}
+{% load humanize %}
+<div class="ui large header">
+    Notificaciones
+</div>
+{% include 'dashboard/componentes/boton-marcar_leidas.html' %} 
+<div class="ui items">
+  <div class="ui grid">
+   {% for notificacion in notificaciones_completas %}
+    <div class="row">
+        {% if notificacion.leida %}
+           <div class="three wide centered column small leida">
+                <i class="check icon"></i>
+                    {{ notificacion.timestamp|naturaltime }}
+           </div>
+           <div class="twelve wide centered column">
+                {% if notificacion.link %}
+                  <a class="leida" href="{{ notificacion.link }}">
+                    {{ notificacion.contenido }}
+                  </a>
+                {% else %}
+                  {{ notificacion.contenido }}
+                {% endif %}
+           </div>
+        {% else %}
+           <div class="three wide centered column small">
+                <i class="hand point right outline icon"></i>
+            {{ notificacion.timestamp|naturaltime }}
+           </div>
+           <div class="twelve wide centered column">
+             {% if notificacion.link %}
+                <a href="{{ notificacion.link }}">
+                    {{ notificacion.contenido }}
+                </a>
+            {% else %}
+                {{ notificacion.contenido }}
+            {% endif %}
+           </div>                
+        {% endif %}
+
+    </div> <!-- Fin row -->
+   {% endfor %}
+  </div>
+</div> <!-- Fin items -->
+{% endblock %}
+</div>

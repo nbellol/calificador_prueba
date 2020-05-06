@@ -1,0 +1,31 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/secciones/nueva_seccion.html</span>
+
+
+{% extends "base.html" %}
+
+{% block head_title %}
+Nueva sección
+{% endblock %}
+
+{% block content %}
+
+<div class="ui content">
+            
+    <form class="ui form" method='POST' action='{% url 'nueva_seccion' %}' enctype='multipart/form-data'> {% csrf_token %}
+         {% for field in forma %}
+            <div class="field">
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}
+            </div>
+        {% endfor %}
+        <input type="hidden" name="tipo_forma" value="nueva_seccion" /> 
+         <button class="ui primary labeled submit icon button tiny" type="submit">
+         <i class="icon upload"></i>Crear sección</button>
+    </form>
+
+</div>    
+
+{% endblock %}
+</div>

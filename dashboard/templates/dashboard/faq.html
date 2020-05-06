@@ -1,0 +1,94 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/faq.html</span>
+
+{% extends "base.html" %}
+
+{% block head_title %}
+Preguntas Frecuentes - FAQ
+{% endblock %}
+
+{% block content %}
+<div class="ui large header centered">
+Preguntas Frecuentes - FAQ
+</div>
+
+<div class="ui relaxed divided list">
+  
+  <div class="item">
+    <i class="large question circle outline middle aligned icon"></i>
+    <div class="content">
+      <span class="ui header">Senecode dice que mi programa está mal, pero yo sé que está bien.</span>
+      <div class="description">
+         Cada envío es revisado por Senecode usando muchos casos de prueba que están diseñados para probar especialmente
+         las condiciones más difíciles de los problemas. En algunos casos, las soluciones se revisan contra más de 100
+         casos de prueba diferentes. Es mejor que suponga que la plataforma no es la que está equivocada e intente
+         probar su solución con casos adicionales. Si definitivamente está convencido que hay un error, deje una
+         pregunta sobre el problema correspondiente.
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="item">
+    <i class="large question circle outline middle aligned icon"></i>
+    <div class="content">
+      <span class="ui header">He mandado la solución al problema del "Área de la Habitación" muchas veces y Senecode
+      sigue diciéndome que mi solución está mal. Mi programa sólo tiene una línea. ¿Qué puedo tener mal?</span>
+      <div class="description">
+         Si lee con atención, este problema requiere que la solución se redondee a dos decimales. Esto lo puede lograr
+         usando la función "round" de Python.
+      </div>
+    </div>
+  </div>  
+      
+
+  <div class="item">
+    <i class="large question circle outline middle aligned icon"></i>
+    <div class="content">
+      <span class="ui header">¿Qué significa "pass"? ¿Es necesario?</span>
+      <div class="description">
+         "pass" es una instrucción de Python que no hace nada. Se usa temporalmente mientras se construye el cuerpo
+         de una función para garantizar que la función tenga un cuerpo (así no haga nada) y el código sea válido para
+         Python (una función con signatura pero sin cuerpo no es válida para el lenguaje). Cuando construya sus 
+         soluciones, la palabra "pass" no debería aparecer.
+      </div>
+    </div>
+  </div>  
+  
+  <div class="item">
+    <i class="large question circle outline middle aligned icon"></i>
+    <div class="content">
+      <span class="ui header">¿Tengo que usar la función "print"?</span>
+      <div class="description">
+         En la mayoría de problemas, usted no tiene que usar la función "print". En general, sus funciones tienen que 
+         retornar un valor o una cadena de caracteres. Si su función no tiene un "return", muy posiblemente no funcionará.
+         Recuerde también que la función "print" retorna el valor nulo "None".
+      </div>
+    </div>
+  </div>  
+  
+  
+  <div class="item">
+    <i class="large question circle outline middle aligned icon"></i>
+    <div class="content">
+      <span class="ui header">La retroalimentación me dice algo similar a esto: 
+         "Excepción en la lectura de su función: module 'main' has no attribute 'costo_hervir_agua'"
+        ¿Qué hice mal?</span>
+      <div class="description">
+         Esto ocurre porque el programa que usted mandó no tiene la función que se especificó. En el caso del ejemplo,
+         la función se tenía que llamar "costo_hervir_agua" pero Senecode no la pudo encontrar. Esto se debe usualmente
+         a un error tecleando el nombre de la función.
+      </div>
+    </div>
+  </div>  
+  
+
+    
+</div>
+
+
+
+{% endblock %}
+
+</div>

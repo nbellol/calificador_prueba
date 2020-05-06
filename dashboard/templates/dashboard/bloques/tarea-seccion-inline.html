@@ -1,0 +1,34 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/bloques/tarea-seccion-inline.html</span>
+
+{% load humanize %}  
+
+<div class="one wide centered column center aligned">         
+    {{ tarea.seccion.numero }}
+</div>
+<div class="three wide column">
+     <a href="{% url 'analisis_tarea' tarea.id %}">
+         {% include 'dashboard/componentes/boton-analizar.html' %} 
+     </a>
+     #{{ tarea.numero }} - {{ tarea.descripcion }} 
+</div>
+<div class="seven wide column">
+    <div class="ui meta">
+        {{ tarea.fecha_formateada }}
+        {% if not tarea.vencida %}
+        <span class="ui text green"> 
+            ({{ tarea.fecha_limite|naturaltime }})
+        </span>
+        {% else %}
+        <span class="ui text red">
+            ({{ tarea.fecha_limite|naturaltime }})
+        </span>
+        {% endif %}
+    </div>
+</div>
+
+<div class="five wide column">
+    {% include 'dashboard/componentes/avance_tarea_detallado.html' with avance=avance numero=tarea.id total=avance.total valores=avance.valores etiquetas=avance.etiquetas %} 
+</div>
+</div>

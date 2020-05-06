@@ -1,0 +1,28 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+requests = "*"
+pyflakes = "*"
+django-ipware = "*"
+matplotlib = "*"
+django-mysql = "*"
+mysql = "*"
+mysqlclient = "*"
+django-codemirror = "*"
+django-pygmentify = "*"
+martor = "*"
+Django = "*"
+Markdown = "*"
+pillow = "*"
+python-ldap = "*"
+pandas = "*"
+django-session-timeout = "*"
+reset-migrations = "*"
+
+[requires]
+python_version = "3.7"

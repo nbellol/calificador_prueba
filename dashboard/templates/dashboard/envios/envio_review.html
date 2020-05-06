@@ -1,0 +1,77 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/envios/envio_review.html</span>
+
+{% extends "base.html" %}
+
+{% block head_title %}
+{{ problema.titulo }} - Intento ({{ envio.numero }})
+{% endblock %}
+
+
+{% block content %}
+{% load humanize %}  
+
+<div class="ui items">
+  <div class="item">
+    <div class="content">
+        <h2>Revisi&oacute;n sint&aacute;ctica de un nuevo envío</h2>
+
+        <div class="ui header">
+            {{ problema.titulo }} - Intento # {{ numero_envio }}
+        </div>
+
+        <h4>C&oacute;digo de la soluci&oacute;n enviada</h4>
+        
+        <div class="container bordeado">
+            {{ forma.codigo_envio.value|safe }}
+        </div>
+        
+        <h3>Resultado de la revisi&oacute;n sint&aacute;ctica</h3>
+            <div class="ui segment">
+            Recuerde que esta evaluaci&oacute;n s&oacute;lo revisa aspectos de sintaxis para verificar que el c&oacute;digo enviado sea v&aacute;lido para Python.
+            </div>
+        
+        <div class="ui container">
+            <div class="ui grid celled">
+            {% if evaluacion is not none %}
+                    <div class="row">
+                        <div class="one wide centered column"><i class="red times icon"></i></div>
+                        <div class="fourteen wide centered column">
+                {% for resultado in evaluacion %}
+                            <p><span class="ui large text">{{ resultado }}</span></p>
+                {% endfor %}
+                        </div>
+                    </div>
+            {% else %}
+                <div class="row">
+                    <div class="one wide centered column"><i class="green check icon"></i></div>
+                    <div class="fourteen wide centered column">No hay problemas de sintaxis en el c&oacute;digo enviado</div>
+                </div>
+            {% endif %}                
+            </div>
+        </div>
+        
+        <div class="meta">
+            <form method='POST' action='.' enctype='multipart/form-data'> {% csrf_token %}            
+               <button class="ui labeled submit icon button tiny" type="submit" name="regresar">
+               <i class="icon angle double left"></i>Regresar</button>
+                <input type="hidden" name="codigo_envio" id="id_codigo_envio" value="{{ codigo_limpio }}" />
+                
+                {% for hidden in forma.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+               
+                {% if evaluacion is none %}
+                   <button class="ui positive labeled submit icon  button tiny" type="submit" name="upload">
+                   <i class="icon upload"></i>Enviar soluci&oacute;n</button>
+                {% endif %}  
+            </form>
+        </div>
+    </div>
+  </div>
+  
+        
+</div>
+{% endblock %}
+</div>

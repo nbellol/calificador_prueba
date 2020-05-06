@@ -1,0 +1,15 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/componentes/medalla.html</span>
+
+{% if medalla.nombre_tipo == "Oro" %}
+    <div class="ui yellow label" title="{{ medalla.descripcion }}" >
+{% elif medalla.nombre_tipo == "Plata" %}
+    <div class="ui grey label" title="{{ medalla.descripcion }}" >
+{% else %}
+    <div class="ui brown label" title="{{ medalla.descripcion }}" >
+{% endif %}
+    <i class="ui certificate icon"></i>
+    <div class="detail">{{ medalla.nombre }}</div>
+</div>
+</div>

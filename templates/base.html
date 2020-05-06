@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
+
+    <!-- Semantic-UI -->
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+    <script src="{% static 'fomanticui/semantic.min.js' %}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'fomanticui/semantic.min.css' %}">
+
+    <!-- Estilos pygmentify -->
+    {% load pygmentify_tags %}
+    <link rel="stylesheet" href="{% pygmentify_css %}">
+
+    <!-- Estilo para el markdown-->
+    {% load martortags %}
+    <link href="{% static 'martor/css/martor.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+
+    <!-- Estilo del sitio -->
+    <link rel="stylesheet" href="{% static 'dashboard/style.css' %}">
+
+    <title>{% block head_title %} Replace this title {% endblock %}  </title>
+  </head>
+  
+<body class="Site">
+<style>
+    .documentationtip {
+      position: relative;
+      display: inline-block;
+      border-bottom: 1px dotted black;
+    }
+
+    .documentationtip .doctiptext {
+      visibility: hidden;
+      width: 120px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+
+      /* Position the tooltip */
+      position: absolute;
+      z-index: 1;
+    }
+
+    .documentationtip:hover .doctiptext {
+      visibility: visible;
+    }
+    </style>
+
+    {% include menu %}
+
+    <div class="Site-content ui main container">
+        {% block content%}
+           Replace this ....
+        {% endblock %}
+    </div>
+
+    {% include 'footer.html' %}
+
+    {% include 'js.html' %}
+
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/bloques/problema-header-simple.html</span>
+
+<div class="ui header">
+    {{ problema.titulo }}            
+</div>
+<div class="ui tiny right floated statistics">
+ <div class="statistic">
+  <div class="label">
+    Dificultad
+  </div>        
+  <div class="value">
+    {{ problema.dificultad }} 
+  </div>
+ </div>
+</div>
+<div class="meta">
+    {% include 'dashboard/componentes/tags.html' with tags=problema.tags.all %}
+</div>
+       
+<div class="meta">{{ problema.curso }}</div>
+
+</div>

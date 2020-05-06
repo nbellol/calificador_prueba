@@ -1,0 +1,36 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/work/problemas.html</span>
+
+{% extends "base.html" %}
+
+{% block head_title %}
+Problemas
+{% endblock %}
+
+{% block content %}
+
+<div class="ui main items" style="padding-top: 60px;">
+    {% for problema in lista_problemas %}
+  <div class="item">
+    <div class="content">
+        <div class="header">{{ problema.titulo }}</div>
+        <div class="meta">
+            {% for tag in problema.tags.all %}
+            <div class="ui teal label">
+              {{ tag.texto }}
+            </div>                    
+            {% endfor %}
+        </div>
+        <div class="description">
+            <p>{{ problema.descripcion|linebreaks|truncatewords:30 }}</p>
+        </div>        
+        <div class="extra">
+            <div class="ui blue label"><a href="./{{ problema.numero }}"><i class="lightbulb outline icon"></i>Visitar</a></div>
+        </div>
+    </div>
+  </div>
+    {% endfor %}
+</div>        
+{% endblock %}
+</div>

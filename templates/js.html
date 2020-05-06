@@ -1,0 +1,11 @@
+{% load static %}
+
+<script language='javascript'>
+    $(document).ready(function() {
+      $('.ui.accordion').accordion()
+    
+      $('.toggle').click(function() {
+        $('.ui.accordion').accordion('toggle', 1);
+      });
+    });
+</script>

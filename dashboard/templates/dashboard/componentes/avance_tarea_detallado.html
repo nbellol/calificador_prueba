@@ -1,0 +1,28 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/componentes/avance_tarea_detallado.html</span>
+
+<div class="ui multiple progress"
+     data-total="{{ total }}"
+     data-percent="{{ valores|safe }}"
+     id="avanceTarea{{ numero }}"
+     precision="0"
+     label="ratio" >
+  <div class="green bar">
+    <div class="progress"></div>
+  </div>
+  <div class="yellow bar">
+    <div class="progress"></div>
+  </div>
+  <div class="red bar">
+    <div class="progress"></div>
+  </div>
+  <div class="grey bar">
+    <div class="progress"></div>
+  </div>
+</div>
+
+<script language='javascript'>
+  $('#avanceTarea{{ numero }}').progress();
+</script>
+</div>

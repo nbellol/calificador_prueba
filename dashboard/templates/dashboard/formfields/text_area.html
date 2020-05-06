@@ -1,0 +1,19 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/formfields/text_area.html</span>
+
+<div class="field">
+    {% if titulo %}
+    <label for="{{ field.id_for_label }}"  
+           data-tooltip="{{ field.help_text|safe }}"
+           data-position="bottom left">{{ field.label }}
+    </label>
+    {% endif %}
+    <textarea class="code" name="{{ field.html_name }}" style="overflow-y: auto; overflow-x: auto; resize: vertical;"
+              id="{{ field.id_for_label }}">{% if field.value is not None %}{{ field.value }}{% endif %}</textarea>
+    <div class="ui error message">
+        <div class="header">Error</div>
+        <p>{{ field.errors }}</p>
+    </div>
+ </div>
+</div>

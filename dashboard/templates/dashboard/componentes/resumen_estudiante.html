@@ -1,0 +1,21 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/componentes/resumen_estudiante.html</span>
+
+<div class="row">
+    <div class="one wide column"><span class="ui small text">{{ est.seccion.curso_seccion.nombre_curso }}&nbsp;{{ est.seccion.nombre_semestre }}</span></div>
+    <div class="one wide column">{{ est.seccion.numero }}</div>
+    <div class="left aligned five wide column">
+         <a href="{% url 'analisis_estudiante' est.id %}">
+         {% include 'dashboard/componentes/boton-analizar.html' %} 
+         <img class="logo" width="30" height="30" src="/image/{{ est.avatar }}" style="transform: translate(0,0)"/>         
+         </a> {{ est.nombre }} </div>
+    <div class="one wide column">{{ est.puntos }}</div>
+    <!--<div class="one wide column">{{ est.medallas }}</div>-->
+    <div class="two wide column">{{ est.num_problemas_resueltos }} / {{ est.num_intentos }}</div>
+    <div class="one wide column">{% include 'dashboard/componentes/avance-tarea.html' with avance=est.eficiencia numero=est.id %}</div>    
+    <div class="two wide column"><!--<img src="/image/{{ est.pulso_actividad }}" width="60" />--></div>
+    <div class="two wide column"><!--<img src="/image/{{ est.pulso_puntos }}"  width="60" />--></div>
+    <div class="two wide column">{% include 'dashboard/componentes/necesita_respuesta.html' with necesita_respuesta=est.preguntas_sin_respuesta %}</div>
+</div>
+</div>

@@ -1,0 +1,11 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/bloques/pregunta-analisis-estudiante.html</span>
+
+{% load humanize %}
+<td><a href="{% url 'problema' pregunta.problema.slug %}">{{ pregunta.problema.titulo }}</a></td>
+<td><a href="{% url 'problema' pregunta.problema.slug %}#pregunta{{ pregunta.id }}">{{ pregunta.titulo }}</a></td>
+<td>{{ pregunta.timestamp|naturaltime }}</td>
+<td class="center aligned">{% if pregunta.sin_respuesta %}<i class="warning red icon"></i>{% endif %}</td>
+
+</div>

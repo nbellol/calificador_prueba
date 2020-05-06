@@ -1,0 +1,80 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/secciones/secciones_sistema.html</span>
+
+{% extends "base.html" %}
+
+{% block head_title %}
+Secciones
+{% endblock %}
+
+{% block content %}
+<div class="ui large header">
+    Secciones
+</div>
+
+<div class="ui content">
+    <div class="item">
+    <a href="{% url 'nueva_seccion' %}">Crear nueva sección</a>
+    </div>
+    <div class="item">
+    <a href="{% url 'monitores' %}">Cargar monitores</a>
+    </div>
+</div>
+
+<div>
+{{ mensaje }}
+</div>
+
+{% if repetidos %}
+<div  class="ui orange inverted raised segment"> Los siguientes usuarios estaban repetidos:
+<ol>
+{% for repetido in repetidos %}
+    <li>{{ repetido }}</li>
+{% endfor %}
+</ol>
+</div>
+{% endif %}
+
+{% if promovidos %}
+<div  class="ui orange inverted raised segment"> Los siguientes usuarios eran estudiantes y fueron promovidos:
+<ol>
+{% for promovido in promovidos %}
+    <li>{{ promovido }}</li>
+{% endfor %}
+</ol>
+</div>
+{% endif %}
+
+
+<div class="ui modal"></div>
+
+<div class="ui items">
+    <div class="active content">
+        <div class="ui grid">
+            {% for seccion in secciones %}
+                <div class="ui four wide column">
+                {% include 'dashboard/componentes/seccion.html' %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>    
+</div> <!-- Fin items -->
+
+<script>
+function cargar_estudiantes(id_seccion) {
+	$.ajax({
+	  type: "GET",
+	  url: "/ajax/estudiantes_seccion/" + id_seccion,
+	  success: function(data) {
+	    console.log(data);
+	    $('.ui.modal').empty().append(data);
+	    $('.ui.modal').modal('show');
+	  }
+	});
+}
+</script>
+
+{% endblock %}
+
+</div>

@@ -1,0 +1,42 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/bloques/estudiantes_seccion.html</span>
+
+<div class="header">
+  {{ seccion.nombre_semestre }} - {{ seccion.numero }}
+</div>
+<div class="image content">
+                 {% for prof in seccion.profesores %}                    
+    <div class="description">
+                    <img class="mini ui image" src="/image/{{ prof.avatar }}" />    
+        <li>{{ prof.nombre }}</li>                 
+    </div>    
+                 {% endfor %}
+</div>    
+<div class="scrolling content">
+    <div class="ui compact center aligned content grid">
+        <div class="row">
+            <div class="one wide column bottom aligned"><span class="ui text bold">Curso</span></div>
+            <div class="one wide column bottom aligned"><span class="ui text bold">Secc.</span></div>
+            <div class="five wide column left aligned bottom aligned"><span class="ui  text bold">Nombre</span></div>
+            <div class="one wide column bottom aligned"><span class="ui  text bold">Pts.</span></div>
+            <!--<div class="one wide column"><i class="medal icon"></i></div>-->
+            <div class="two wide column bottom aligned"><span class="ui  text bold">Resueltos / Intentos</span></div>
+            <div class="one wide column bottom aligned"><span class="ui  text bold">Efectividad</span></div>                    
+            <div class="two wide column bottom aligned"><span class="ui  text bold">Actividad <p> <span class="ui text purple">(pronto)</span></span></div>
+            <div class="two wide column bottom aligned"><span class="ui  text bold">Puntos <p> <span class="ui text purple">(pronto)</span></span></div>
+            <div class="two wide column bottom aligned"></div>
+        </div>
+    
+    {% for est in estudiantes %}
+        {% include 'dashboard/componentes/resumen_estudiante.html' with est=est %}
+    {% endfor %}
+    </div>
+</div>
+<div class="actions">
+    <div class="ui positive right labeled icon button">
+      Cerrar
+      <i class="close icon"></i>
+    </div>
+  </div>
+</div>

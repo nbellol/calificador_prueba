@@ -1,0 +1,46 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/bloques/problema-card.html</span>
+
+{% load humanize %}
+
+<div class="ui primary horizontal card">
+  <div class="content middle aligned content">
+    <div class="header">
+      {% if resultado %}
+          <a class="ui green right ribbon label">{{ resultado.puntos }} pts / {{ problema.dificultad }} pts</a>
+      {% endif %}<p></p>
+      <span>
+        {% include 'dashboard/componentes/nivel_problema.html' with nivel=problema.nivel %} 
+        <a href="{% url 'problema' problema.slug %}">{{ problema.titulo }}</a> 
+        {% include 'dashboard/componentes/estado_problema.html' with resultado=resultado %}
+        {% if es_admin or es_profesor %}
+            {% if problema.publico %}
+               <i class="icon grey eye"></i>
+            {% else %}
+               <i class="icon grey low vision"></i>
+            {% endif %}
+        {% endif %}
+      </span>
+    </div>
+    <div class="description">
+        <div>
+           {% if problema.es_reto %}
+               <i class="icon grey dragon"></i>
+               Reto {{ problema.nombre_nivel_reto }} - 
+           {% endif %}
+           Dificultad: {{ problema.dificultad }}
+        </div>
+        {% include 'dashboard/componentes/tags.html' with tags=problema.tags.all %}
+    </div>
+  </div>
+  {% if es_admin %}
+  <div class="ui bottom attached lightgrey button">
+     <a href="{% url 'administrar' problema.slug %}">Administrar</a>
+  </div>
+  {% endif %}
+</div>
+
+
+
+</div>

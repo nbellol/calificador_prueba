@@ -1,0 +1,51 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/tareas/tarea.html</span>
+
+
+{% extends "base.html" %}
+
+{% block head_title %}
+Tarea {{ tarea.descripcion }} - ({{ tarea.fecha_formateada }})
+{% endblock %}
+
+{% block content %}
+<div class="ui items">
+  <div class="item">
+    <div class="content">
+        {% include 'dashboard/bloques/tarea-header.html' with tarea=tarea resultado_tarea=resultado_tarea %}
+
+{% if tarea.vencida %}
+<div class="ui red inverted raised segment">
+  <div class="ui large text bold">Tarea vencida</div>
+  <p>La tarea ya está vencida. Los envíos que se hagan a partir de la fecha de vencimiento 
+     no serán tenidos en cuenta para la calificación.</p>
+</div>
+{% endif %}
+
+{% if tarea.vencida %}
+<h3>Calificación de la tarea: {{ resultado_tarea.calificacion_tarea }}/100</h3>
+<div>
+
+</div>
+{% endif %}
+
+        
+        <h3>Avance de la tarea</h3>
+        <div>
+            {% include 'dashboard/componentes/avance-tarea.html' with avance=resultado_tarea.avance2 numero=tarea.id  %} 
+        </div>
+
+        <h3>Problemas</h3>        
+        <div class="ui container">
+            <div class="ui grid">
+            {% for problema, resultado_problema in resultado_tarea.problemas_tarea %}
+                {% include 'dashboard/bloques/problema-tarea.html' with problema=problema resultado_problema=resultado_problema %}
+            {% endfor %}
+            </div>
+        </div>
+     </div>
+  </div>
+</div>
+{% endblock %}
+</div>

@@ -1,0 +1,11 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/componentes/estudiante_sin_respuesta.html</span>
+
+{% if respuesta_pendiente %}
+<a  data-tooltip="El estudiante tiene preguntas sin respuesta" 
+    data-position="top left"  href="{% url 'preguntas_estudiante' est.id %}">
+  <i class="icon red warning"></i>
+</a>
+{% endif %}
+</div>

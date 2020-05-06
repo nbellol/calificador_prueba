@@ -1,0 +1,58 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/problemas_estudiante.html</span>
+
+{% extends "base.html" %}
+
+{% block head_title %}
+Problemas
+{% endblock %}
+
+{% block content %}
+
+<div style="margin-bottom: 12px;">
+{% include 'dashboard/componentes/leyenda_estado_problema.html' %}
+</div>
+
+
+<div class="ui top attached tabular menu">
+  <a class="{% if tipo_busqueda == 'simple' %} active {% endif %} item" data-tab="first">Buscar</a>
+  <a class="{% if tipo_busqueda == 'avanzada' %} active {% endif %} item" data-tab="second">Búsqueda avanzada</a>
+</div>
+<div class="ui bottom attached {% if tipo_busqueda == 'simple' %} active {% endif %} tab segment" data-tab="first">
+    {% include 'dashboard/problemas/buscar_problemas.html' %}
+</div>
+<div class="ui bottom attached {% if tipo_busqueda == 'avanzada' %} active {% endif %}  tab segment" data-tab="second">
+    {% include 'dashboard/problemas/buscar_avanzado.html' %}
+</div>
+
+{% include 'busqueda.html' %}
+
+<div class="ui two cards">
+  {% for problema, resultado in lista_problemas %}
+      {% include 'dashboard/bloques/problema-card.html' with problem=problema resultado=resultado %}
+  {% endfor %}
+</div>
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if lista_problemas.has_previous %}
+            <a href="?page=1">&laquo; Primera</a>
+            <a href="?page={{ lista_problemas.previous_page_number }}">Anterior</a>
+        {% endif %}
+
+        <span class="current">
+            P&aacute;g. {{ lista_problemas.number }} de {{ lista_problemas.paginator.num_pages }}.
+        </span>
+
+        {% if lista_problemas.has_next %}
+            <a href="?page={{ lista_problemas.next_page_number }}">Siguiente</a>
+            <a href="?page={{ lista_problemas.paginator.num_pages }}">&Uacute;ltima &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+{% endblock %}
+</div>

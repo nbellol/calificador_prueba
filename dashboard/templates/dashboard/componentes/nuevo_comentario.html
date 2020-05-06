@@ -1,0 +1,24 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/componentes/nuevo_comentario.html</span>
+
+<div>
+    <form class="ui form" method='POST' action='.' enctype='multipart/form-data'> {% csrf_token %}
+         {{ formulario.non_field_errors }}
+         {% include 'dashboard/formfields/text_field.html' with field=formulario.titulo %}
+         {% include 'dashboard/formfields/text_area.html' with field=formulario.contenido titulo=True %}
+         
+         {% if formulario.tipo %}
+             {% include 'dashboard/formfields/combo.html' with field=formulario.tipo %}
+         {% endif %}
+         
+         {% for hidden in formulario.hidden_fields %}
+            {{ hidden }}
+         {% endfor %} 
+         <input type="hidden" name="tipo_formulario" value="{{ tipo }}" />
+
+         <button class="ui primary labeled submit icon button tiny type="submit"><i class="icon edit"></i>Enviar</button>
+    </form>
+
+</div>
+</div>

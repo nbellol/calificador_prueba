@@ -1,0 +1,15 @@
+Django
+Markdown
+requests
+pyflakes
+django-ipware
+matplotlib
+django-mysql
+mysql
+mysqlclient
+django-codemirror
+django-pygmentify
+martor
+pillow
+python-ldap
+django-session-timeout

@@ -1,0 +1,54 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/bloques/envio-header.html</span>
+
+{% load humanize %}
+
+<div class="ui header">
+    <span class="tiny">{% include 'dashboard/componentes/estado_envio.html' with resultado=envio.estado %}</span>
+    {% if envio.problema.es_reto %}
+    <span class="tiny">    
+       <i class="icon grey dragon"></i>
+    </span>{% endif %}
+    <span>{% include 'dashboard/componentes/nivel_problema.html' with nivel=envio.problema.nivel %}</span>
+    {{ envio.problema.titulo }} 
+    (Intento # {{ envio.numero }})
+
+</div>
+
+
+ <div class="ui tiny right floated statistics">
+   <div class=" statistic">
+      <div class="label">
+        Puntos
+      </div>        
+      <div class="value">
+        {{ envio.resultado_estudiante.puntos }}/{{ envio.problema.dificultad }}
+      </div>
+  </div>
+  <div class=" statistic">
+      <div class="label">
+        Dificultad
+      </div>        
+      <div class="value">
+        {{ envio.problema.dificultad }}
+      </div>
+  </div>
+  {% if envio.problema.es_reto %}
+  <div class="statistic">
+      <div class="label">
+        Nivel Reto
+      </div>
+      <div class="value">
+        {{ envio.problema.nombre_nivel_reto }}
+      </div>
+  </div>
+  {% endif %}   
+</div>
+
+<div class="meta">
+   Enviado: {{ envio.timestamp|naturaltime }} ( {{ envio.fecha_formateada }})
+</div>
+
+
+</div>

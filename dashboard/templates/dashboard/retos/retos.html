@@ -1,0 +1,63 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/retos/retos.html</span>
+
+{% extends "base.html" %}
+
+{% block head_title %}
+Problemas
+{% endblock %}
+
+{% block content %}
+
+<div class="ui large header">
+    Retos nivel {{ nivel }}
+</div>
+
+{% if avance %}
+<div class="ui segment">
+    <p><span class="ui medium bold grey text">{{num_avance}} de {{num_total}} retos completados ({{avance}})</span></p>
+    {% for reto, resultado in lista_problemas_b %}
+        {% include 'dashboard/componentes/avance_retos.html'%}
+    {% endfor %}
+    {% for reto, resultado in lista_problemas_m %}
+        {% include 'dashboard/componentes/avance_retos.html'%}
+    {% endfor %}
+    {% for reto, resultado in lista_problemas_a %}
+        {% include 'dashboard/componentes/avance_retos.html'%}
+    {% endfor %}    
+</div>
+{% endif %}
+
+<div class="ui top attached tabular menu">
+  <a class="active item" data-tab="basicos">Básicos</a>
+  <a class="item" data-tab="medios">Intermedios</a>
+  <a class="item" data-tab="avanzados">Avanzados</a>  
+</div>
+<div class="ui bottom attached active tab segment" data-tab="basicos">
+    <div class="ui grid">
+      {% for problema, resultado in lista_problemas_b %}
+          {% include 'dashboard/bloques/problema-retos.html' with problem=problema resultado=resultado %}
+      {% endfor %}
+    </div>
+</div>
+<div class="ui bottom attached tab segment" data-tab="medios">
+    <div class="ui grid">
+      {% for problema, resultado in lista_problemas_m %}
+          {% include 'dashboard/bloques/problema-retos.html' with problem=problema resultado=resultado %}
+      {% endfor %}
+    </div>
+</div>
+<div class="ui bottom attached tab segment" data-tab="avanzados">
+    <div class="ui grid">
+      {% for problema, resultado in lista_problemas_a %}
+          {% include 'dashboard/bloques/problema-retos.html' with problem=problema resultado=resultado %}
+      {% endfor %}
+    </div>
+</div>
+
+{% include 'busqueda.html' %}
+
+
+{% endblock %}
+</div>

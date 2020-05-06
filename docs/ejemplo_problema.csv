@@ -1,0 +1,73 @@
+﻿Titulo,Encontrar caracteres duplicados
+Descripcion,"En este ejercicio se quieren encontrar todos los caracteres duplicados en una cadena (str). Usted debe construir una función que reciba una cadena de caracteres ('entrada') y que retorne una lista con todos los caracteres que aparezcan más de una vez en la cadena recibida por parámetro. La lista retornada debe estar ordenada lexicográficamente. Si no hay ningún caracter repetido, la lista retornada debe ser una lista vacía. "
+Etiquetas,Ciclos; Recorridos totales; Cadenas
+Dificultad,10
+Nivel ,3
+funcion,caracteres_duplicados
+retorno,list
+descripcion_retorno,Una lista ordenada con los caracteres que aparecían más de una vez en la cadena.
+parametro_1_nombre,entrada
+parametro_1_tipo,str
+parametro_1_descripcion,La cadena en la que se quieren buscar caracteres duplicados
+prueba_1_nombre,Buscar caracteres duplicados en una cadena sin caracteres duplicados
+prueba_1_ok,Reconoció que no había caracteres duplicados
+prueba_1_error,No respondió correctamente cuando no había caracteres duplicados
+prueba_1_tiempo,5
+prueba_1_peso,0.2
+prueba_1_entrada,"'abcdef'
+'12345'
+'.,!@'
+'abcd1234!@#'"
+prueba_1_salida,"[]
+[]
+[]
+[]
+[]"
+prueba_2_nombre,Encontrar caracteres alfabéticos duplicados
+prueba_2_ok,Encontró caracteres alfabéticos duplicados
+prueba_2_error,No encontró caracteres alfabéticos duplicados
+prueba_2_tiempo,5
+prueba_2_peso,0.2
+prueba_2_entrada,"'abcdeabcde'
+'abcdeabcdeabcdeabcde'
+'abcaaabbbccc'
+'abcddcba'"
+prueba_2_salida,"['a', 'b', 'c', 'd', 'e']
+['a', 'b', 'c', 'd', 'e']
+['a', 'b', 'c', 'd', 'e']
+['a', 'b', 'c', 'd', 'e']"
+prueba_3_nombre,Encontrar caracteres no-alfabéticos duplicados
+prueba_3_ok,Encontró caracteres no-alfabéticos duplicados
+prueba_3_error,No encontró caracteres no-alfabéticos duplicados
+prueba_3_tiempo,5
+prueba_3_peso,0.2
+prueba_3_entrada,"""12341234""
+""12344321""
+""123412341234""
+""111222333444""
+""!23$!23$"""
+prueba_3_salida,"['1','2','3','4']
+['1','2','3','4']
+['1','2','3','4']
+['1','2','3','4']
+['!','$','2','3']"
+prueba_4_nombre,Diferenciar entre mayúsculas y minúsculas
+prueba_4_ok,Diferenció correctamente entre mayúsculas y minúsuclas
+prueba_4_error,No diferenció correctamente entre mayúsculas y minúsuclas
+prueba_4_tiempo,5
+prueba_4_peso,0.2
+prueba_4_entrada,"'abcdABCD'
+'AbcdABCD'
+'abcdABcD'
+'aBcdABcD'"
+prueba_4_salida,"[]
+['A']
+['c']
+['B', 'c']"
+prueba_5_nombre,Reconocer correctamente cadenas vacías
+prueba_5_ok,Reconoció correctamente el caso en que la cadena estaba vacía
+prueba_5_error,No reconoció correctamente el caso en que la cadena estaba vacía
+prueba_5_tiempo,5
+prueba_5_peso,0.2
+prueba_5_entrada,'
+prueba_5_salida,[]

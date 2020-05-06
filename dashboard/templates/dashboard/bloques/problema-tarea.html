@@ -1,0 +1,17 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/bloques/problema-tarea.html</span>
+
+<div class="row">
+   <div class="six wide column">
+       {% include 'dashboard/componentes/estado_problema.html' with resultado=resultado_problema %}
+       <a href="{% url 'problema' problema.slug %}">{{ problema.titulo }}</a>
+       <div>{% include 'dashboard/componentes/tags.html' with tags=problema.tags.all %}</div>
+   </div>
+   <div class="three wide column">N&uacute;mero de Intentos: {{ resultado_problema.cantidad_envios_actual }}</div>
+   <div class="seven wide column">
+     {% include 'dashboard/componentes/avance_envio.html' with envio=resultado_problema.ultimo_envio %}
+   </div>
+</div>
+
+</div>

@@ -1,0 +1,11 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/bloques/tag-analisis-estudiante.html</span>
+
+<td>
+  {% include 'dashboard/componentes/tag.html' with tag=tag %} 
+  <a href="{% url 'analisis estudiante tag' estudiante.id tag.texto %}"> {% include 'dashboard/componentes/boton-analizar.html' %}</a>
+</td>
+<td>{% include 'dashboard/componentes/avance-tarea.html' with avance=porcentaje numero=tag.id %}</td>
+<td class="center aligned">{{ puntos }}</td>
+</div>

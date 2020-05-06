@@ -1,0 +1,80 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/envios/envios_analisis.html</span>
+
+{% extends "base.html" %}
+
+{% block head_title %}
+{{ titulo }}
+{% endblock %}
+
+{% block content %}
+
+<div class="ui large header">
+{{ titulo }}
+</div>
+
+<ol>
+{% for problema in problemas %}
+<li><a href="#{{ problema.slug }}">{{ problema.titulo }}</a></li>
+{% endfor %}
+</ol>
+
+{% for problema in problemas %}
+<div class="ui items">
+  <div class="item">
+    <div class="content" id="{{problema.slug}}">
+        {% include 'dashboard/bloques/problema-header-simple.html' with problema=problema%}    
+        <a  data-tooltip="Ver problema" data-position="top left" 
+            href="{% url 'problema' problema.slug %}" target="_blank"
+            class="ui violet basic label">
+            <i class="icon graduation cap"></i> Ver problema
+        </a>          
+        <div class="active title">
+            <h4>Pruebas del problema</h4>
+        </div>
+        <ul>
+            {% for prueba in problema.consultar_pruebas %}
+                <li>Prueba {{ prueba.numero}}: {{ prueba.descripcion }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="content">
+        <h4>Resultado de env&iacute;os</i></h4>
+        <div class="active content">
+            <table class="ui celled table compact collapsing">
+              <thead>
+                 <th>Env&iacute;os</th>
+                {% for prueba in problema.consultar_pruebas %}
+                    <th>Pr#{{ prueba.numero}}</th>
+                {% endfor %}
+              </thead>
+              <tbody>
+              {% for envio, resultados in problema.matriz %}
+                  <tr>
+                  <td class="left aligned">
+                      {{envio.estudiante.nombre}} - Intento #{{ envio.numero }} 
+                        <a data-tooltip="Ver env&iacute;o" data-position="top left" 
+                           href="{% url 'envio_estudiante' envio.slug %}">
+                            <i class="teal briefcase icon"></i>
+                        </a>  
+                  </td>
+                  {% for resultado in resultados %}
+                     <td class="center aligned">{% include 'dashboard/componentes/resultado_prueba.html' %}</td>
+                  {% endfor %}</tr>
+              {% endfor %}
+              </tbody>
+            </table>
+        </div>
+    </div>
+  </div>
+{% endfor %}
+
+
+
+</div>
+{% endblock %}
+</div>

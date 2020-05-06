@@ -1,0 +1,8 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/componentes/tags.html</span>
+
+{% for tag in tags %}
+    {% include 'dashboard/componentes/tag.html' with tag=tag %}                 
+{% endfor %}
+</div>

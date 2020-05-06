@@ -1,0 +1,13 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/componentes/avance_retos.html</span>
+
+<a  data-tooltip="{{ reto.titulo }}"
+    data-position="top left"  href="{% url 'problema' reto.slug %}">
+  {% if resultado.resuelto %}
+    <div class="ui green label mini" style="width: 20px; height: 20px;" ></div>
+  {% else %}
+    <div class="ui label mini" style="width: 20px; height: 20px;" ></div>
+  {% endif %}
+</a>
+</div>

@@ -1,0 +1,150 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/problemas/problema_ad.html</span>
+
+{% extends "base.html" %}
+
+{% block head_title %}
+{{ problema.titulo }}
+{% endblock %}
+
+{% block content %}
+
+{% load static %}
+<script src="{% static 'codemirror/codemirror.js' %}"></script>
+<link rel="stylesheet" href="{% static 'codemirror/codemirror.css' %}">
+<script src="{% static 'codemirror/python/python.js' %}"></script>
+
+
+<div class="ui items">
+  <div class="item">
+    <div class="content">
+        {% include 'dashboard/bloques/problema-header.html' with resultado_problema=resultado_problema problema=problema%}
+    </div>
+  </div>
+  
+  <div class="ui grid celled">
+     <div class="row">
+        <div class="eight wide centered column">
+            <div class=" title">
+                <h4>Descripción del problema</h4>            
+            </div> 
+            {% include 'dashboard/bloques/problema-descripcion.html' with problema=problema%}
+        </div>
+        <div class="eight wide centered column">
+            <div class=" title">
+                <h4>Función requerida</h4>            
+            </div> 
+                {% include 'dashboard/bloques/especificacion_funcion.html' with problema=problema%}
+        </div>
+    </div>    
+  </div>
+  
+  <div class="item">
+    <div class="content">  
+        <form  class="ui form" method='POST' action='.' enctype='multipart/form-data'> {% csrf_token %}            
+            {{ forma.non_field_errors }}
+
+            <div class="bordeado">
+            {% include 'dashboard/formfields/text_area.html' with field=forma.codigo_solucion titulo=True %}
+            
+            <script language='javascript'>
+                var myCodeMirror = CodeMirror.fromTextArea({{ forma.codigo_solucion.id_for_label }});
+            </script>
+            </div>
+            
+            {% for hidden in forma.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            <div class="meta">
+                <button class="ui positive labeled submit icon  button tiny" type="submit"  name="guardar" label="guardar">
+                   <i class="icon upload"></i>Subir y verificar sintaxis</button>
+                <button class="ui labeled submit icon button tiny" type="submit" name="correr">
+                   <i class="icon running"></i>Correr solución subida</button>                   
+            </div>        
+        </form>
+     </div>        
+  </div>  
+  
+  <div class="ui item container">
+        <div class="ui grid">
+            <div class=" title">
+                <h4>Evaluación de Sintaxis</h4>            
+            </div> 
+        
+        {% if evaluacion is not none %}
+                <div class="row">
+                    <div class="fourteen wide centered column red">Hay problemas de sintaxis en la soluci&oacute;n enviada y por eso no fue guardada.</div>
+                </div>
+
+            {% for resultado in evaluacion %}
+                <div class="row">
+                    <div class="one wide centered column"><i class="red times icon"></i></div>
+                    <div class="fourteen wide centered column">{{ resultado }}</div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="row">
+                <div class="one wide centered column"><i class="green check icon"></i></div>
+                <div class="fourteen wide centered column">No hay problemas de sintaxis en la soluci&oacute;n guardada</div>
+            </div>
+        {% endif %}                
+        </div>
+    </div>
+
+{% if resultados is not none %}
+
+<div class=" title">
+    <h4>Resultado de las pruebas</h4>            
+</div> 
+
+  {% for prueba in resultados %}
+  
+    <table class="ui celled teal small table">
+      <tbody>
+        <tr>
+            <th class="collapsing">
+                {% if prueba.prueba_res %}
+                <i class="green check icon"></i>
+                {% else %}
+                <i class="red times icon"></i>
+                {% endif %}
+                Prueba {{ prueba.prueba_num }}:
+            </th>
+            <td colspan="2">{{ prueba.prueba_desc }}</td>
+        </tr>
+        {% for caso in prueba.casos %}
+        <tr>
+            <th class="center aligned"  colspan="2">
+                {% if caso.caso_res %}
+                <i class="green check icon"></i>
+                {% else %}
+                <i class="red times icon"></i>
+                {% endif %}
+                Caso {{ caso.caso_num }}
+            </th>
+        </tr>
+        <tr>
+             <th data-label="Entrada">Entrada:</th>
+             <td><tt>{{ caso.caso_entrada}}</tt></td>
+        </tr>
+        <tr>
+             <th data-label="Salida esperada">Salida esperada:</th>
+             <td><tt>{{ caso.caso_esperado}}</tt></td>
+        </tr>
+        <tr>
+             <th data-label="Salida real">Salida obtenida:</th>
+             <td><tt>{{ caso.caso_salida}}</tt></td>
+        </tr>
+
+        {% endfor %}    
+      </tbody>      
+    </table>  
+  
+    {% endfor %}
+    
+{% endif %}        
+</div>
+{% endblock %}
+</div>

@@ -1,0 +1,221 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/perfil/analisis_estudiante.html</span>
+
+{% extends "base.html" %}
+
+{% block head_title %}
+Perfil del usuario
+{% endblock %}
+
+{% block content %}
+{% load humanize %}
+<div class="ui large header">
+    Análisis del estudiante: {{ estudiante.nombre }}
+</div>
+
+<div class="ui centered padded stackable grid ">
+  <div class="row">
+    <div class="six wide column box">
+        <div class="ui card">
+          <div class="image">
+            <img src="/image/{{ estudiante.avatar }}"  style="width:290px;height:290px;">
+          </div>
+          <div class="content">
+            <a class="header">{{ estudiante.nombre }}</a>
+            <div class="meta">
+              <div>{{ estudiante.alias }}</div>
+              <div>{{ estudiante.descripcion_tipo_usuario }}</div>
+              <div class="date">&Uacute;ltima visita: {{ estudiante.ultimo_acceso|naturaltime }}</div>
+            </div>
+            <div class="description">
+              {{ estudiante.login }}@uniandes.edu.co
+            </div>
+          </div>
+          <div class="extra content">
+            <div>
+              <i class="star icon"></i>
+              {{ estudiante.puntos }} pts
+            </div>
+            <div>
+              <i class="trophy icon"></i>
+              {{ estudiante.medallas }}
+            </div>
+            <div class="large">
+                {% for medalla in medallas %}
+                <div class="three wide column">
+                {% include 'dashboard/componentes/medalla.html' with medalla=medalla %}
+                </div>
+                {% endfor %}
+            </div>
+          </div>
+        </div>
+     </div>
+
+<!--
+    <div class="ten wide column">
+        <div class="ui stackable grid ">
+          <div class="row" id="first-row">
+             <div class="eight wide column box">
+
+<div class="ui card">
+  <div class="content">
+    <div class="header">Actividad</div>
+  </div>
+  <div class="content">
+      <img src="/image/{{ estudiante.pulso_actividad }}" width="200"/>
+  </div>
+  <div class="extra content">
+    Actividad del estudiante en el tiempo (envios, preguntas, respuestas)
+  </div>
+</div>
+
+             </div>
+             <div class="eight wide column box">
+
+<div class="ui card">
+  <div class="content">
+    <div class="header">Puntos</div>
+  </div>
+  <div class="content">
+      <img src="/image/{{ estudiante.pulso_puntos }}" width="200"/>
+  </div>
+  <div class="extra content">
+    Evolución de los puntos acumulados en el tiempo
+  </div>
+</div>
+
+             </div>
+
+             -->
+
+
+
+          </div> <!-- row -->
+
+
+
+          <div class="row" id="second-row">
+             <div class="sixteen wide column box">
+                <div class="ui large header">
+                    Problemas intentados
+                </div>
+                <div class="content">
+                    <table class="ui celled table">
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th>Pts.</th>
+                          <th>Título</th>
+                          <th class="center aligned">Intentos</th>
+                          <th class="center aligned">Avance</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for resultado in lista_problemas %}
+                        <tr>
+                          {% include 'dashboard/bloques/problema-analisis-estudiante.html' with problema=resultado.problema resultado=resultado %}
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                </div>
+             </div> <!-- column -->
+          </div> <!-- row -->
+
+          <div class="row" id="second-row">
+             <div class="sixteen wide column box">
+                <div class="ui large header">
+                    Etiquetas trabajadas
+                </div>
+
+                <div class="content">
+                    <table class="ui celled table">
+                      <thead>
+                        <tr>
+                          <th class="left aligned">Etiqueta</th>
+                          <th>Efectividad (intentos exitosos / intentos totales)</th>
+                          <th class="center aligned">Puntos</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          {% for tag, porcentaje, puntos in tags %}
+                            <tr>
+                              {% include 'dashboard/bloques/tag-analisis-estudiante.html' with estudiante=estudiante %}
+                            </tr>
+                          {% endfor %}
+                      </tbody>
+                    </table>
+                </div>
+
+             </div> <!-- column -->
+          </div> <!-- row -->
+
+          <div class="row" id="second-row">
+             <div class="sixteen wide column box">
+                <div class="ui large header">
+                    Preguntas
+                </div>
+
+                <div class="content">
+                    <table class="ui celled table">
+                      <thead>
+                        <tr>
+                          <th>Problema</th>
+                          <th>Pregunta</th>
+                          <th>Fecha</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for pregunta in preguntas_estudiante %}
+                        <tr>
+                          {% include 'dashboard/bloques/pregunta-analisis-estudiante.html' with pregunta=pregunta %}
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                </div>
+
+
+             </div> <!-- column -->
+          </div> <!-- row -->
+
+          <div class="row" id="second-row">
+             <div class="sixteen wide column box">
+                <div class="ui large header">
+                    Respuestas
+                </div>
+
+                <div class="content">
+                    <table class="ui celled table">
+                      <thead>
+                        <tr>
+                          <th>Problema</th>
+                          <th>Pregunta</th>
+                          <th>Respuesta</th>
+                          <th>Fecha</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for respuesta in respuestas_estudiante %}
+                        <tr>
+                          {% include 'dashboard/bloques/respuesta-analisis-estudiante.html' with respuesta=respuesta %}
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                </div>
+
+             </div> <!-- column -->
+          </div> <!-- row -->
+
+
+        </div> <!-- grid -->
+     </div> <!-- column -->
+  </div> <!-- row -->
+</div>
+
+
+{% endblock %}
+</div>

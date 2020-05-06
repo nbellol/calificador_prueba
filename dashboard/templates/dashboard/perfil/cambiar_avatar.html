@@ -1,0 +1,19 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/perfil/cambiar_avatar.html</span>
+
+
+<div class="ui content">
+    <h3>Cambiar imagen de perfil</h3>
+    <form class="ui form" method='POST' action='{% url 'perfil' %}' enctype='multipart/form-data'> {% csrf_token %}
+         {% for field in form %}
+            <div class="field">
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}
+            </div>
+        {% endfor %}
+         <button class="ui primary labeled submit icon button tiny" type="submit">
+         <i class="icon upload"></i>Cambiar imagen de perfil</button>
+    </form>
+</div>
+</div>

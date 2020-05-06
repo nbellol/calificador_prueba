@@ -1,0 +1,16 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/bloques/tarea-header.html</span>
+
+{% load humanize %}
+
+<div class="ui  header">
+    <span class="tiny">{% include 'dashboard/componentes/estado_tarea.html' with resultado=resultado_tarea %}</span>
+    Tarea: {{ tarea.descripcion }}
+    <div class="meta">
+        Fecha límite: {{ tarea.fecha_formateada }} ({{ tarea.fecha_limite|naturaltime }})
+    </div>
+</div>
+
+
+</div>

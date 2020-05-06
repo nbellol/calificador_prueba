@@ -1,0 +1,19 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/componentes/estado_envio.html</span>
+
+{% if envio.es_nuevo %}
+   <span data-tooltip="Env&iacute;o pendiente">
+   <i class="small icon yellow hourglass outline"> </i>
+   </span>  
+{% elif envio.es_incorrecto %}
+    <span data-tooltip="Env&iacute;o fallido">
+    <i class="small icon red times circle"> </i>    
+    </span>  
+{% else %}
+    <span data-tooltip="Env&iacute;o exitoso">
+   <i class="small icon green check circle"> </i>
+   </span>  
+{% endif %}
+
+</div>

@@ -1,0 +1,59 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/tareas/tareas.html</span>
+
+{% extends "base.html" %}
+
+{% block head_title %}
+{{ titulo }}
+{% endblock %}
+
+{% block content %}
+
+<div class="ui large header">
+{{ titulo }}
+</div>
+
+{% if lista_tareas %}
+<div class="ui items">
+  <div class="ui grid">
+    <div class="row">
+        <div class="three wide centered column">
+           <div class="ui header">
+            Descripci&oacute;n de tarea
+           </div>
+        </div>
+        <div class="six wide centered column">
+            <div class="ui header">
+                Fecha límite
+            </div>
+        </div>
+        <div class="three wide centered column">
+            <div class="ui header">
+                Calificación
+            </div>
+        </div>
+        <div class="four wide centered column">
+            <div class="ui header">
+                Porcentaje de problemas resueltos
+            </div>
+        </div>
+      </div> <!-- Fin row -->
+  {% for tarea, resultado_tarea in lista_tareas %}
+     <div class="row">
+        {% include 'dashboard/bloques/tarea-inline.html' with tarea=tarea resultado_tarea=resultado_tarea %}
+      </div> <!-- Fin row -->
+   {% endfor %}
+   </div> <!-- Fin grid -->
+</div> <!-- Fin ote,s -->
+{% else %}
+<div class="ui header">
+  ... en este momento no hay ninguna tarea para mostrar
+</div>
+
+<div class="ui container">
+   <img class="logo" src="/image/Seneca_singotto.png" width="250" style="display: block; margin: auto; width: 250px;"/>
+</div>
+{% endif %}
+{% endblock %}
+</div>

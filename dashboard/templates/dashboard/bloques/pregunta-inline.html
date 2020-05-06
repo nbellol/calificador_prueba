@@ -1,0 +1,68 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/bloques/pregunta-inline.html</span>
+
+{% load humanize %}  
+
+<a class="anchor" id="pregunta{{ pregunta.id }}"></a>
+<div class="ui comment styled segment">
+    <div class="avatar">
+      {% if pregunta.autor %}
+          <img src="/image/{{ pregunta.autor.avatar }}" style="width:30px;height:30px;">
+      {% else %}
+          <img src="/image/anon.png">
+      {% endif %}
+    </div>
+    <div class="content">
+      <h4 class="">{{ pregunta.titulo }}</h4>
+      <small class="metadata">{{ pregunta.tipo_pregunta }}</small>      
+      <div class="text">
+        {{ pregunta.contenido|linebreaks }}
+      </div>
+      <div class="metadata">
+        <a class="author">
+           {% if pregunta.autor %}{{ pregunta.autor.alias }}{% else %}Usuario olvidado...{% endif %}
+        </a>      
+        <span class="date">{{ pregunta.timestamp|naturaltime }}</span>
+      </div>
+      
+      <div class="comments">
+      {% for comentario in pregunta.consultar_comentarios %}
+        <div class="comment">
+            <div class="avatar">
+              {% if comentario.autor %}
+                  <img src="/image/{{ comentario.autor.avatar }}"  style="width:30px;height:30px;">
+              {% else %} 
+                  <img src="/image/anon.png">
+              {% endif %}
+            </div>
+            <div class="content">
+              <h4 class="">{{ comentario.titulo }}</h4>
+              <div class="text">
+                {{ comentario.contenido|linebreaks }}
+              </div>
+              <div class="metadata">
+                <a class="author">
+                  {% if comentario.autor %}{{ comentario.autor.nombre }}{% else %}Usuario olvidado...{% endif %}
+                </a>      
+                <span class="date">{{ comentario.timestamp|naturaltime }}</span>
+              </div>             
+            </div>
+        </div>
+      {% endfor %}
+
+        <div class="fluid accordion">
+            <div class="title">
+                <button class="ui primary labeled submit icon button tiny" type="submit"><i class="icon comments"></i>Responder</button>
+            </div>    
+            <div class="content">
+                {% include 'dashboard/componentes/nuevo_comentario.html' with pregunta=pregunta formulario=pregunta.get_respuesta_form tipo="respuesta"%}
+            </div>
+        </div>
+                    
+      </div>
+
+    </div>
+  </div>
+
+</div>

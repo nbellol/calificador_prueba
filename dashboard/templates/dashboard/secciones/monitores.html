@@ -1,0 +1,41 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/secciones/monitores.html</span>
+
+
+{% extends "base.html" %}
+
+{% block head_title %}
+Cargar monitores
+{% endblock %}
+
+{% block content %}
+
+<div class="content">
+La información de los monitores debe estar en un archivo CSV con las siguientes columnas:
+  <ol>
+    <li>Seccion: número de la sección</li>
+    <li>Rol: debería ser "profesor"</li>
+    <li>Nombres: nombres del monitor</li>
+    <li>Correo: correo uniandes del monitor</li>
+  </ol>
+</div>
+
+<div class="ui content">
+            
+    <form class="ui form" method='POST' action='{% url 'monitores' %}' enctype='multipart/form-data'> {% csrf_token %}
+         {% for field in forma %}
+            <div class="field">
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}
+            </div>
+        {% endfor %}
+        <input type="hidden" name="tipo_forma" value="nueva_seccion" /> 
+         <button class="ui primary labeled submit icon button tiny" type="submit">
+         <i class="icon upload"></i>Cargar monitores</button>
+    </form>
+
+</div>    
+
+{% endblock %}
+</div>

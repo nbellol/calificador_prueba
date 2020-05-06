@@ -1,0 +1,11 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/bloques/respuesta-analisis-estudiante.html</span>
+
+{% load humanize %}
+<td><a href="{% url 'problema' respuesta.pregunta.problema.slug %}">{{ respuesta.pregunta.problema.titulo }}</a></td>
+<td><a href="{% url 'problema' respuesta.pregunta.problema.slug %}#pregunta{{ respuesta.pregunta.id }}">{{ respuesta.pregunta.titulo }}</a></td>
+<td>{{ respuesta.titulo }}</a></td>
+<td>{{ respuesta.timestamp|naturaltime }}</td>
+
+</div>

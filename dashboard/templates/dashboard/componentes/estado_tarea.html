@@ -1,0 +1,13 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/componentes/estado_tarea.html</span>
+
+{% if resultado_tarea.terminada %}
+   <i class="small icon green check circle"> </i>    
+{% elif resultado_tarea.terminada_tarde %}
+   <i class="small icon orange check"> </i>
+{% else %}
+   <i class="small icon red times circle"> </i>
+{% endif %}
+
+</div>

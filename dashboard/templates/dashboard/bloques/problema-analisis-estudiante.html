@@ -1,0 +1,22 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/bloques/problema-analisis-estudiante.html</span>
+
+<td class="center aligned">{% include 'dashboard/componentes/estado_problema.html' with resultado=resultado %}</td>
+<td>{{ resultado.puntos }}/{{ problema.dificultad }}</td>
+<td>
+  <small>{% include 'dashboard/componentes/nivel_problema.html' with nivel=problema.nivel %}</small>
+  <a href="{% url 'problema' problema.slug %}">{{ problema.titulo }}</a>
+  {% if problema.es_reto %}
+        (Reto {{ problema.nombre_nivel_reto }})
+  {% endif %} 
+</td>
+<td class="center aligned">{{ resultado.ultimo_envio.numero }}
+    {% if resultado.ultimo_envio %}
+        <a href="{% url 'analisis estudiante problema' resultado.estudiante.id resultado.problema.slug %}"> 
+        {% include 'dashboard/componentes/boton-analizar.html' %}</a>
+    {% endif %}
+</td>
+<td class="center aligned">{% include 'dashboard/componentes/avance-tarea.html' with avance=resultado.ultimo_envio.avance numero=problema.slug %}</td>
+
+</div>

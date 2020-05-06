@@ -1,0 +1,39 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/bloques/especificacion_funcion.html</span>
+
+ <table class="ui celled teal small table collapsing">
+      <thead>
+        <tr>
+            <th class="collapsing">Nombre de la función:</th>
+        <td colspan="2">{{ problema.funcion }}</td>
+      </tr></thead>
+      <thead>
+        <tr><th colspan="3" class="center aligned">Par&aacute;metros</th></thead>
+      <thead>
+        <tr><th>Nombre</th>
+        <th>Tipo</th>
+        <th>Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for parametro in problema.consultar_argumentos %}
+            <tr>
+              <td data-label="Nombre">{{ parametro.nombre }}</td>
+              <td data-label="Tipo">{{ parametro.tipo }}</td>
+              <td data-label="Descripción">{{ parametro.descripcion }}</td>
+            </tr>            
+        {% endfor %}    
+      </tbody>      
+      <thead>
+        <tr>
+          <th colspan="1" class="center aligned">Tipo del retorno</th>
+          <th colspan="2" class="center aligned">Descipción del retorno</th></thead>            
+      <tbody>
+        <tr>
+            <td colspan="1">{{ problema.retorno_tipo }}</td>            
+            <td colspan="2">{{ problema.retorno_descripcion }}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>

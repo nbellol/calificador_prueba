@@ -1,0 +1,15 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/componentes/avance_envio.html</span>
+
+<div class="ui mini indicating progress"  
+     data-percent="{{ envio.avance }}" 
+     id="avanceEnvio{{ envio.id }}">
+   <div class="bar" >
+       <div class="progress"></div>
+   </div>
+ </div>
+<script language='javascript'>
+  $('#avanceEnvio{{ envio.id }}').progress();
+</script>
+</div>

@@ -1,0 +1,16 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/componentes/nivel_problema.html</span>
+
+{% if nivel == 1 %}
+    <div class="ui blue {{size}} label">N1</div>
+{% elif nivel == 2 %}
+    <div class="ui green {{size}} label">N2</div>
+{% elif nivel == 3 %}
+    <div class="ui pink {{size}} label">N3</div>
+{% elif nivel == 4 %}
+    <div class="ui orange {{size}} label">N4</div>
+{% else %}
+    <div class="ui grey {{size}} label">N{{ nivel }}</div>
+{% endif %}
+</div>

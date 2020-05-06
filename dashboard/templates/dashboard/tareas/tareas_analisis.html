@@ -1,0 +1,116 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/tareas/tareas_analisis.html</span>
+
+{% extends "base.html" %}
+
+{% block head_title %}
+Análisis de la tarea: {{ tarea.descripcion }}
+{% endblock %}
+
+{% block content %}
+{% load humanize %}
+
+
+
+<div class="ui items">
+<div class="item">
+    <div class="content">
+<div class="ui  header">
+Sección {{ tarea.seccion.numero }}: {{ tarea.descripcion }}
+</div>
+
+<div class="ui right floated" id="grafica">
+
+{% include 'd3_pie.html' %}
+<script>
+labels = {{ etiquetas|safe }};
+colors = {{ colores|safe }};
+values = {{ estadisticas }};
+newData = labels.map(function(label, i){
+		return { label: label, value: values[i] }
+	});
+
+svg = crear_pie("#grafica", 500, 100, labels, colors, newData);
+</script>
+
+</div>
+
+
+<div class="meta">
+Fecha de entrega:
+        {{ tarea.fecha_formateada }}
+        {% if not tarea.vencida %}
+        <span class="ui text green">
+            ({{ tarea.fecha_limite|naturaltime }})
+        </span>
+        {% else %}
+        <span class="ui text red">
+            ({{ tarea.fecha_limite|naturaltime }})
+        </span>
+        {% endif %}
+</div>
+
+<div class="meta">
+<a href="{% url 'csv_tarea' tarea.id %}"><i class="icon download"></i>Descargar calificaciones (CSV)</a>
+</div>
+
+</div>
+</div>
+
+<table class="ui celled table" style="display: block;overflow-x: auto;" id="t_analisis">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      {% for problema in problemas_tarea %}
+          <th data-tooltip="{{ problema.titulo }}" data-position="top left" label="">
+             <a href="{% url 'analisis problema tarea' problema.slug tarea.id %}"> {% include 'dashboard/componentes/boton-analizar.html' %}</a>
+             {{ problema.titulo }}
+          </th>
+      {% endfor %}
+      <th>Calificación</th>
+      <th>Avance total</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for est, res_tarea, res_problemas in resultados_estudiantes %}
+    <tr>
+      <td>
+
+          <a href="{% url 'analisis_estudiante' est.id %}">
+            {% include 'dashboard/componentes/boton-analizar.html' %}
+          </a>
+          {% include 'dashboard/componentes/estado_tarea.html' with resultado_tarea=res_tarea %}
+          {{ est.nombre }}
+      </td>
+      {% for problema, res_problema in res_problemas %}
+             <td>
+               <div class="ui grid">
+                 <div class="ten wide column"">
+                  {% if res_problema.ultimo_envio %}
+                      <a  data-tooltip="Ver envíos" data-position="top left"
+                          href="{% url 'analisis estudiante problema' est.id problema.slug %}"> {% include 'dashboard/componentes/boton-analizar.html' %}</a>
+                  {% endif %}
+
+                  <span class="ui text small">{% include 'dashboard/componentes/estado_problema.html' with resultado=res_problema %}
+                  {{ res_problema.cantidad_envios_actual }} intentos </span>
+
+                 </div>
+                 <div class="five wide column"">
+                     {% if res_problema.ultimo_envio %}
+                         {% include 'dashboard/componentes/avance-tarea.html' with avance=res_problema.ultimo_envio.avance numero=res_problema.ultimo_envio.id %}
+                     {% endif %}
+                 </div>
+               </div>
+             </td>
+      {% endfor %}
+      <td>{{ res_tarea.calificacion_tarea }}/100</td>
+      <td>{% include 'dashboard/componentes/avance-tarea.html' with avance=res_tarea.avance numero=est.id %}</td>
+    </tr>
+   {% endfor %}
+  </tbody>
+</table>
+
+</div>
+{% endblock %}
+</div>

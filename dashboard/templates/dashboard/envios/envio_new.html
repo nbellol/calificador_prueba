@@ -1,0 +1,115 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/envios/envio_new.html</span>
+
+{% extends "base.html" %}
+
+{% block head_title %}
+{{ problema.titulo }} - Intento ({{ envio.numero }})
+{% endblock %}
+
+
+{% block content %}
+{% load humanize %}  
+
+{% load static %}
+<script src="{% static 'codemirror/codemirror.js' %}"></script>
+<link rel="stylesheet" href="{% static 'codemirror/codemirror.css' %}">
+<script src="{% static 'codemirror/python/python.js' %}"></script>
+
+<div class="">
+  <div class="item">
+    <div class="content">
+        <h2>Intento #{{ numero_envio }} para el problema <span class="ui text">"{{ problema.titulo }}"</span>
+            <a  data-tooltip="Ver problema" data-position="top left" 
+                href="{% url 'problema' problema.slug %}" target="_blank"
+                class="ui violet basic label">
+                <i class="icon graduation cap"></i> Ver problema
+            </a>             
+        </h2>
+
+{% if hace_parte_tarea_vencida %}
+<div class="ui red inverted raised segment">
+  <div class="ui large text bold">Envío para tarea vencida</div>
+  <p>Este problema hace parte de una tarea que ya está vencida. </p>
+  <p> Los envíos que se hagan a partir de la fecha de vencimiento no serán tenidos en cuenta para la calificación de la tarea.</p>
+</div>
+{% endif %}
+        
+
+  <div class="item">
+    <div class="ui fluid accordion">
+        <div class="active title">
+            <h3>Enunciado del problema (desplegar)<i class="caret down icon"></i></h3>            
+        </div>
+        <div class="content">
+            <div class="ui grid celled">
+             <div class="row">
+                <div class="eight wide centered column">
+                    <div class=" title">
+                        <h4>Descripción del problema</h4>            
+                    </div> 
+                    {% include 'dashboard/bloques/problema-descripcion.html' with problema=problema%}
+                </div>
+                <div class="eight wide centered column">
+                    <div class=" title">
+                        <h4>Función requerida</h4>            
+                    </div> 
+                    <div>
+                        Su solución debe tener una función de acuerdo a la siguiente especificación.
+                        Usted puede agregar funciones adicionales.
+                    </div>
+                    {% include 'dashboard/bloques/especificacion_funcion.html' with problema=problema%}
+                </div>
+            </div>    
+          </div>
+
+        </div>        
+    </div>
+  </div>
+  
+
+<h4>Recuerde que su solución debe tener la siguiente signatura:</h4>
+<div class="bordeado" style="padding-left: 10px;">
+   {{ problema.signatura_html|safe }}
+</div>          
+
+<p>
+Recuerde que si cambia la signatura de la función, es muy posible que su programa falle al ser evaluado.
+</p>
+<p>
+Su programa sólo recibirá información a través de los parámetros. 
+No necesita usar la función <span class="ui text bold">input</span> ni similares para pedirle información al usuario.
+</p>
+
+<h3>C&oacute;digo del env&iacute;o:</h3>
+Use este espacio para escribir el código de su envío. 
+Le recomendamos usar la plantilla preparada para la función que debe construir.
+
+    <form  class="ui form" method='POST' action='.' enctype='multipart/form-data'> {% csrf_token %}            
+        {{ forma.non_field_errors }}
+    
+        <div class="bordeado">
+        {% include 'dashboard/formfields/text_area.html' with field=forma.codigo_envio titulo=False %}
+        
+        <script language='javascript'>
+            var myCodeMirror = CodeMirror.fromTextArea({{ forma.codigo_envio.id_for_label }});
+        </script>
+        </div>
+        
+        {% for hidden in forma.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+    
+        <div class="meta">
+               <button class="ui positive labeled submit icon  button tiny" type="submit" label="upload">
+               <i class="icon upload"></i>Subir soluci&oacute;n</button>
+        </div>        
+    </form>
+   </div>
+</div>
+  
+        
+</div>
+{% endblock %}
+</div>

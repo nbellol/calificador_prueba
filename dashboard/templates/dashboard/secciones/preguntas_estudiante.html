@@ -1,0 +1,41 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/secciones/preguntas_estudiante.html</span>
+
+
+
+{% extends "base.html" %}
+
+{% block head_title %}
+Preguntas de {{ est.nombre }}
+{% endblock %}
+
+{% block content %}
+{% load humanize %}
+<div class="ui large header">
+Preguntas de {{ est.nombre }}
+</div>
+
+<div class="content">
+    <table class="ui celled table">
+      <thead>
+        <tr>
+          <th>Problema</th>
+          <th>Pregunta</th>
+          <th>Fecha</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for pregunta in preguntas_estudiante %}
+        <tr>
+          {% include 'dashboard/bloques/pregunta-analisis-estudiante.html' with pregunta=pregunta %}
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+</div>
+
+
+{% endblock %}
+</div>

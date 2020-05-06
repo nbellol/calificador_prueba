@@ -1,0 +1,83 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/problemas/buscar_avanzado.html</span>
+
+
+<div class="ui middle aligned center aligned">
+  <div class="column">
+    <form class="ui form"  method='POST' action='{% url 'buscar_problemas_avanzado' %}' > {% csrf_token %}
+      <div class="ui fields">
+        <div class="sixteen wide field">
+          <div class="ui left icon input">
+            <i class="search icon"></i>
+            {{ forma_avanzada.terminos }}
+          </div>
+        </div>
+       </div> 
+
+        <div class="inline fields">
+             <label for="fruit">Etiquetas:</label>
+             <div class="sixteen wide field">
+                <div class="ui fluid multiple search normal selection dropdown">
+                  <input type="hidden" name="tags">
+                  <i class="dropdown icon"></i>
+                  <div class="default text">Etiquetas</div>
+                  <div class="menu">
+                      {% for tag in tags %}
+                      <div class="item" data-value="{{ tag.texto }}">{{ tag.texto }}</div>
+                      {% endfor %}
+                  </div> 
+               </div>              
+             </div>
+        </div>
+
+
+        <div class="inline fields">
+           <label for="fruit">Nivel del problema:</label>
+           {% for radio in forma_avanzada.nivel %}
+             <div class="field">
+               <div class="ui radio checkbox">
+                 <label for="{{ radio.id_for_label }}">
+                   {{ radio.choice_label }}
+                 </label>
+                 {{ radio.tag }}
+               </div>
+             </div>
+          {% endfor %}
+        </div>
+
+
+        <div class="inline fields">
+           <label for="fruit">Rango de dificultad:</label>
+           {% for radio in forma_avanzada.rango_dificultad %}
+             <div class="field">
+               <div class="ui radio checkbox">
+                 <label for="{{ radio.id_for_label }}">
+                   {{ radio.choice_label }}
+                 </label>
+                 {{ radio.tag }}
+              </div>
+             </div>
+           {% endfor %}
+
+         </div>
+         {% include 'radio.html' %}
+        
+        <div class="field ">
+          <div class="ui left icon input">
+            <button class="ui primary button">Buscar</button>
+          </div>
+        </div>
+        
+      
+      <div class="ui error message">
+        {% for field in forma_avanzada %}
+            {{ field.errors }}
+        {% endfor %}
+      </div>
+      
+    </form>
+  </div>
+</div>
+
+</div>

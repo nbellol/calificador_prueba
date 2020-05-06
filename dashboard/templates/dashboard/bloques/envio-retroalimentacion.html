@@ -1,0 +1,33 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/bloques/envio-retroalimentacion.html</span>
+
+<div class="ui grid celled">
+{% if not resultados %}
+    <div class="row">
+        <div class="eight wide centered column">
+            <i class="green time icon"></i>
+            La retroalimentación del envío se está calculando ...
+        </div>
+    </div>
+{% endif %}
+
+{% for resultado in resultados %}
+    <div class="row">
+    {% if resultado.resultado_exitoso %}
+        <div class="one wide centered column"><i class="green check icon"></i></div>
+        <div class="one wide centered column">{{ resultado.prueba.numero }}</div>
+        <div class="fourteen wide column">{{ resultado.prueba.comentario_ok }}</div>
+    {% else %}
+        <div class="one wide centered column"><i class="red times icon"></i></div>
+        <div class="one wide centered column">{{ resultado.prueba.numero }}</div>
+        <div class="fourteen wide column">{{ resultado.prueba.comentario_error }}
+           <div>{{ resultado.mensaje_seguro|safe }}</div>
+        </div>
+    {% endif %}
+    </div>
+{% endfor %}
+</div>
+
+
+</div>

@@ -1,0 +1,13 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/bloques/tag-analisis-seccion.html</span>
+
+<td class="left aligned">
+  {% include 'dashboard/componentes/tag.html' with tag=tag %} 
+  <a href="{% url 'analisis seccion tag' seccion.id tag.texto %}"> {% include 'dashboard/componentes/boton-analizar.html' %}</a>
+</td>
+<td>{{ problemas }}</td>
+<td>{{ resueltos }} / {{ intentos }}</td>
+<td>{% include 'dashboard/componentes/avance-tarea.html' with avance=porcentaje numero=tag.id %}</td>
+
+</div>

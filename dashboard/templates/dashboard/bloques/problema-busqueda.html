@@ -1,0 +1,49 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/bloques/problema-busqueda.html</span>
+
+{% load humanize %}
+
+<tr>
+    <td>
+        {% include 'dashboard/componentes/estado_problema.html' with resultado=resultado %}
+        <small>{% include 'dashboard/componentes/nivel_problema.html' with nivel=problema.nivel %}</small>
+        <a href="{% url 'problema' problema.slug %}">{{ problema.titulo }}</a>
+                  
+    </td>
+    {% if es_admin or es_profesor %}
+      <td>
+           {% if problema.publico %}
+               <i class="icon grey eye"></i>
+           {% else %}
+               <i class="icon grey low vision"></i>
+           {% endif %}       
+      </td>
+    {% endif %}                  
+    <td>
+       {% if resultado %}
+           {{ resultado.puntos }} pts / {{ problema.dificultad }} pts
+       {% endif %}
+    </td>    
+    <td class="ui item meta">
+      Dificultad: {{ problema.dificultad }}</td>
+    <td>
+       {% if problema.es_reto %}
+           <i class="icon grey dragon"></i>
+           Reto {{ problema.nombre_nivel_reto }}
+       {% endif %}
+    </td>
+       
+       {% if es_admin %}
+    <td>       
+        <a href="{% url 'administrar' problema.slug %}">Administrar</a>
+    </td>
+       {% endif %}
+</tr>
+<tr>
+    <td colspan="6">
+      {% include 'dashboard/componentes/tags.html' with tags=problema.tags.all %}
+    </td>
+</tr>
+
+</div>

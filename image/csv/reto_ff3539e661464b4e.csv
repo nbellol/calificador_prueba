@@ -1,0 +1,32 @@
+Llave,Valor
+Titulo,Encontrar el elemento mayor
+Descripcion,"En este ejercicio se quiere encontrar el número mayor en una lista de enteros positivos. Usted debe construir una función que retorne el número mayor que se encuentre en la lista. En caso de que la lista esté vacía, se debe retornar -1."
+Etiquetas,Ciclos; Recorridos totales; Listas
+Dificultad,2
+Nivel ,3
+funcion,encontrar_mayor
+retorno,int
+descripcion_retorno,El número más grande en la lista
+parametro_1_nombre,entrada
+parametro_1_tipo,list
+parametro_1_descripcion,La lista de números que se desea buscar
+prueba_1_nombre,Lista Vacía
+prueba_1_ok,El retorno es el esperado cuando la lista está vacía
+prueba_1_error,No se responde correctamente si la lista no tiene elementos
+prueba_1_tiempo,5
+prueba_1_peso,"0,1"
+prueba_1_entrada,[]
+prueba_1_salida,-1
+prueba_2_nombre,Listas llenas
+prueba_2_ok,Se ha encontrado el elemento mayor para todos los casos
+prueba_2_error,No se ha encontrado el elemento mayor en todos los casos
+prueba_2_tiempo,5
+prueba_2_peso,"0,9"
+prueba_2_entrada,"[1,2,3,4,5,6,7,8,9,10]
+[0,1,0,1,0,0,0,1,0,0,1,1,0,2,1]
+[5,4,3,2,1]
+[1,0,13,6,8,9,2,9,2]"
+prueba_2_salida,"10
+2
+5
+13"

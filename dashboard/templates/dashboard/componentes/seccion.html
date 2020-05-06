@@ -1,0 +1,21 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/componentes/seccion.html</span>
+
+<div class="">
+    <div class="ui card">
+        <div class="content">
+                 {% for prof in seccion.profesores %}                    
+                    <img class="right floated mini ui image" src="/image/{{ prof.avatar }}" />    
+                 {% endfor %}
+            <div class="header" onclick="cargar_estudiantes({{ seccion.id }})">{{ seccion.nombre_semestre }} - {{ seccion.numero}}</div>
+            <div class="meta" >{{ seccion.cantidad_estudiantes }} estudiantes</div>
+                 {% for prof in seccion.profesores %}                    
+            <div class="description">
+                    <li>{{ prof.nombre }}</li>
+            </div>
+                 {% endfor %}
+        </div>
+    </div>
+</div>
+</div>

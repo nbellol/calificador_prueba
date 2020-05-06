@@ -1,0 +1,9 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/bloques/envios.html</span>
+
+{% for envio in envios %}
+    {% include 'dashboard/bloques/envio-inline.html' with envio=envio problema=problema mostrar_problema=mostrar_problema %}
+{% endfor %}
+
+</div>

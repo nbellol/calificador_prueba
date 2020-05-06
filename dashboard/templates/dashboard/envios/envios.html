@@ -1,0 +1,66 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/envios/envios.html</span>
+
+{% extends "base.html" %}
+
+{% block head_title %}
+{{ titulo }}
+{% endblock %}
+
+{% block content %}
+
+{% if mensaje %}
+<div class="ui green inverted raised segment">
+  <div class="text bold">{{ mensaje }}</div>
+  <p>Su envío ha quedado en la cola de revisión y será revisado pronto.</p>
+  <p>Dependiendo de la cantidad de envíos pendientes esto podría tomar entre 30 segundos y varios minutos.</p>
+  <p>Por favor visite la página del envío haciendo click en <span class="text bold">Ver envío</span> para verificar su estado y la retroalimentación calculada por el sistema.</p>
+</div>
+{% endif %}
+
+<div class="ui large header">
+{{ titulo }}
+</div>
+
+
+{% if envios %}
+
+<div class="ui two stackable cards">
+  {% for envio in envios %}    
+      {% include 'dashboard/bloques/envio-card.html' with envio=envio mostrar_problema=True %}
+  {% endfor %}
+</div>
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if envios.has_previous %}
+            <a href="?page=1">&laquo; Primera</a>
+            <a href="?page={{ envios.previous_page_number }}">Anterior</a>
+        {% endif %}
+
+        <span class="current">
+            P&aacute;g. {{ envios.number }} de {{ envios.paginator.num_pages }}.
+        </span>
+
+        {% if envios.has_next %}
+            <a href="?page={{ envios.next_page_number }}">Siguiente</a>
+            <a href="?page={{ envios.paginator.num_pages }}">&Uacute;ltima &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+
+{% else %}
+<div class="ui header">
+  ... en este momento no hay ningún envío para mostrar
+</div>
+
+<div class="ui container">
+   <img class="logo" src="/image/Seneca_singotto.png" width="250" style="display: block; margin: auto; width: 250px;"/>     
+</div>
+{% endif %}
+{% endblock %}
+</div>

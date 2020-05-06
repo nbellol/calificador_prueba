@@ -1,0 +1,90 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/perfil/perfil.html</span>
+
+{% extends "base.html" %}
+
+{% block head_title %}
+Perfil del usuario
+{% endblock %}
+
+{% block content %}
+{% load humanize %}
+<div class="ui centered padded stackable grid ">
+
+  <div class="row">
+    <div class="six wide column box">
+        <div class="ui card">
+          <div class="image">
+            <img src="/image/{{ usuario.avatar }}"  style="width:290px;height:290px;">
+          </div>
+          <div class="content">
+            <a class="header">{{ usuario.nombre }}</a>
+            <div class="meta">
+              <div>{{ usuario.descripcion_tipo_usuario }}</div>
+              <div>{{ usuario.alias }}</div>              
+              <div class="date">&Uacute;ltima visita: {{ usuario.ultimo_acceso|naturaltime }}</div>
+            </div>
+            <div class="description">
+              {{ usuario.login }}@uniandes.edu.co
+            </div>
+          </div>
+          <div class="extra content">
+            <div>
+              <i class="star icon"></i>
+              {{ usuario.puntos }} pts
+            </div>
+            <div>
+              <i class="trophy icon"></i>
+              {{ usuario.medallas }}
+            </div>
+          </div>
+        </div>
+     </div> <!-- column -->
+    <div class="ten wide column">
+
+        <div class="ui stackable grid ">
+          <div class="row">
+
+            <div class="sixteen wide column box">
+            {% if mensaje_error %}
+            <div class="ui error message">{{ mensaje_error }}</div>
+            {% endif %}
+            {% if mensaje_ok %}
+            <div class="ui positive message">{{ mensaje_ok }}</div>
+            {% endif %}
+            </div>
+        </div>
+
+        <div class="ui stackable grid ">
+          <div class="row" id="first-row">
+             <div class="sixteen wide column box">
+              {% include 'dashboard/perfil/cambiar_avatar.html' with form=forma_avatar %}
+             </div> <!-- column -->
+          </div> <!-- row -->
+
+          <div class="row" id="second-row">
+             <div class="ten wide column box">
+              {% include 'dashboard/perfil/cambiar_alias.html' with form=forma_alias %}
+             </div> <!-- column -->
+          </div> <!-- row -->
+
+
+          {% if usuario.usuario_local %}
+          <div class="row" id="second-row">
+             <div class="ten wide column box">
+              {% include 'dashboard/perfil/cambiar_password.html' with form=forma_password %}
+             </div> <!-- column -->
+          </div> <!-- row -->
+          {% endif %}
+          
+          
+                    
+        </div> <!-- grid -->
+     </div> <!-- column -->
+  </div> <!-- row -->
+</div>
+
+
+{% endblock %}
+</div>

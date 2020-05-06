@@ -1,0 +1,39 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/retos/nuevo_reto.html</span>
+
+
+{% extends "base.html" %}
+
+{% block head_title %}
+Nuevo reto
+{% endblock %}
+
+{% block content %}
+                    
+<div class="ui content">
+ <div class="sixteen wide column box">
+    {% if mensaje_error %}
+    <div class="ui error message">{{ mensaje_error }}</div>
+    {% endif %}
+    {% if mensaje_ok %}
+    <div class="ui positive message">{{ mensaje_ok }}</div>
+    {% endif %}
+</div>
+
+
+    <form class="ui form" method='POST' action='{% url 'nuevo_reto' %}' enctype='multipart/form-data'> {% csrf_token %}
+         {% for field in forma %}
+            <div class="field">
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}
+            </div>
+        {% endfor %}
+        <input type="hidden" name="tipo_forma" value="nuevo_reto" /> 
+         <button class="ui primary labeled submit icon button tiny" type="submit">
+         <i class="icon upload"></i>Cargar reto</button>
+    </form>
+</div>
+
+{% endblock %}
+</div>

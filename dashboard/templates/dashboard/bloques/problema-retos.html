@@ -1,0 +1,24 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/bloques/problema-retos.html</span>
+
+{% load humanize %}
+
+<div class="eight wide column">    
+  <div class="ui grid">
+    <div class="ui row top attached ">
+      {% include 'dashboard/componentes/estado_problema.html' with resultado=resultado %}
+      <a href="{% url 'problema' problema.slug %}" target="_blank">{{ problema.titulo }} (Dificultad: {{ problema.dificultad }})</a>
+      {% if resultado %} 
+          <div class="ui item">
+              <div class="meta">&nbsp;{{ resultado.ultimo_envio.numero }} intentos previos </div>
+          </div>
+      {% endif %}
+    </div>
+    <div class="ui bottom attached ">
+      {% include 'dashboard/componentes/tags.html' with tags=problema.tags.all %}
+    </div>
+  </div>
+</div>
+
+</div>

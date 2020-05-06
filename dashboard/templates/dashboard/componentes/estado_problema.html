@@ -1,0 +1,20 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/componentes/estado_problema.html</span>
+
+{% if resultado %}
+    {% if resultado.resuelto %}
+        <span data-tooltip="Problema resuelto">
+            <i class="icon  green check circle"> </i>
+        </span>            
+    {% else %}
+        <span data-tooltip="Problema sin resolver">
+            <i class="icon  red times circle"> </i>    
+        </span>            
+    {% endif %}
+{% else %}
+    <span data-tooltip="Problema sin intentar">
+        <i class="icon  yellow star outline"> </i>
+    </span>        
+{% endif %}
+</div>

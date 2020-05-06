@@ -1,0 +1,13 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/componentes/resultado_prueba.html</span>
+
+{% if resultado %}
+    {% if resultado.resultado_exitoso %}
+        <span data-tooltip="{{ resultado.prueba.comentario_ok }}"><i class="icon small green check circle"> </i></span>
+    {% else %}
+        <span data-tooltip="{{ resultado.prueba.comentario_error }}"><i class="icon small red times circle"> </i></span>  
+    {% endif %}
+{% else %}
+{% endif %}
+</div>

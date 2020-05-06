@@ -1,0 +1,72 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/templates/navbaradmin.html</span>
+
+  <div class="ui fixed inverted green menu">
+    <div class="ui container">
+      <a href="/home" class="header item">
+        <img class="logo" width="90px" src="/image/logo.png">
+        ADMIN
+      </a>
+
+      <div class="ui simple dropdown item">
+        <i class="cogs icon"></i>Problemas
+        <div class="menu">
+          <a class="item" href="{% url 'buscar_problemas' %}">Buscar problemas</a>
+          <a class="item" href="{% url 'problemas' %}">Todos los problemas</a>
+        </div>
+      </div>
+
+      <div class="ui simple dropdown item">
+        <i class="reply all icon"></i>Secciones
+        <div class="menu">
+          <a class="item" href="{% url 'secciones' None %}">Todas las secciones</a>
+          <div class="divider"></div>          
+          {% for semestre in semestres %}
+              <a class="item" href="{% url 'secciones' semestre %}">{{ semestre.nombre_semestre }}</a>
+          {% endfor %}        
+        </div>
+      </div>
+
+      <div class="ui simple dropdown item">
+        <i class="calendar check outline icon"></i>Retos
+        <div class="menu">
+          <a class="item" href="{% url 'retos' 1 %}">Retos nivel 1</a>
+          <a class="item" href="{% url 'retos' 2 %}">Retos nivel 2</a>
+          <a class="item" href="{% url 'retos' 3 %}">Retos nivel 3</a>
+          <a class="item" href="{% url 'retos' 4 %}">Retos nivel 4</a>
+          <a class="item" href="{% url 'nuevo_reto' %}">Cargar Reto</a>
+        </div>
+      </div>
+
+      <div class="ui simple dropdown item">
+        <i class="trophy icon"></i>Estadísticas
+        <div class="menu">
+          <a class="item" href="{% url 'estadisticas' %}"><i class="signal icon"></i>Estadísticas generales</a>
+        </div>
+      </div>
+
+       <div class="ui right item grid">
+
+       {% include 'menu_notificaciones.html' %}
+
+      <div class="ui item simple dropdown right item">
+        <div class="ui grid">
+            <div class=""  style="padding-left: 0.5em; padding-right: 0em;">
+                <div class="ui right aligned">{{ puntos }} pts</div>
+                <div class="ui right aligned">{{ num_medallas }} M</div>
+            </div>
+            <div class="ui right aligned  image">
+                <img class="logo" style="width:30px;height:30px;" src="/image/{{ imagen_avatar }}" />
+            </div>
+        </div>
+        <div class="menu">
+          <a class="item" href="{% url 'perfil' %}"><i class="id badge outline icon"></i>Mi perfil</a>
+          <a class="item" href="{% url 'logout' %}"><i class="sign-out icon"></i>Logout</a>
+        </div>
+      </div>
+     </div>
+
+    </div>
+  </div>
+</div>

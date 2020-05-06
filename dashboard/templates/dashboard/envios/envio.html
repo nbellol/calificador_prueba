@@ -1,0 +1,79 @@
+<div class="documentationtip">
+  <span class="doctiptext">
+./calificador/dashboard/templates/dashboard/envios/envio.html</span>
+
+
+{% extends "base.html" %}
+
+{% block head_title %}
+{{ envio.problema.titulo }} - Intento ({{ envio.numero }})
+{% endblock %}
+
+
+{% block content %}
+
+<div style="margin-bottom: 12px;">
+{% include 'dashboard/componentes/leyenda_estado_envio.html' %}
+</div>
+
+{% if es_profesor %}
+<a class="ui teal image label">
+  <img src="/image/{{ envio.estudiante.avatar }}" style="width:30px;height:30px;">
+  {{envio.estudiante.nombre}}
+  <div class="detail">Estudiante</div>
+</a>
+{% endif %}
+  
+
+<div class="ui items">
+  <div class="item">
+    <div class="content">
+        {% include 'dashboard/bloques/envio-header.html' with envio=envio %}
+
+        <a  data-tooltip="Ver problema" data-position="top left" 
+            href="{% url 'problema' envio.problema.slug %}" target="_blank"
+            class="ui violet basic label">
+            <i class="icon graduation cap"></i> Ver problema
+        </a>   
+            
+                    
+        <h4>Resultado del intento: {{ envio.descripcion_estado_envio }} - {{ envio.avance|floatformat:"0" }}% de avance</i></h4>
+        {% include 'dashboard/componentes/avance_envio.html' with envio=envio %}
+        
+    </div>
+  </div>
+  
+  <div class="item">
+    <div class="content">
+        <h3>C&oacute;digo enviado</h3>
+        <div class="container bordeado">
+            {{ envio.codigo_envio|safe }}
+        </div>
+    </div>
+  </div>
+  
+  <div class="item">
+    <div class="content">        
+        <h3>Retroalimentaci&oacute;n: resultado de las pruebas</h3>
+        <div class="ui container">
+            {% include 'dashboard/bloques/envio-retroalimentacion.html' with resultados=resultados %}
+        </div>
+      </div>
+  </div>      
+
+  {% if not envio.resuelto and not es_profesor %}
+  <div class="item">
+    <div class="content">        
+        <div>
+            {% include 'dashboard/componentes/nuevo_envio_boton.html' with problema=envio.problema %}
+        </div>
+    </div>
+  </div>        
+  {% endif %}
+  
+</div>
+
+  
+        
+{% endblock %}
+</div>
